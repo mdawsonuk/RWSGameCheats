@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vadefs.h>
+#include "../common.h"
 
 class CGlobalVarsBase;
 class ClientClass;
@@ -43,16 +43,6 @@ struct CDemoPlaybackParameters_t;
 
 enum ButtonCode_t : int;
 enum ClientFrameStage_t : int;
-
-
-//TODO: Move these to common header
-typedef __int32 int32;
-typedef unsigned __int32 uint32;
-typedef __int64 int64;
-typedef unsigned __int64 uint64;
-typedef void* (*CreateInterfaceFn)(const char* name, int* returnCode);
-typedef int qboolean;
-typedef uintptr_t uintp;
 
 namespace vgui
 {

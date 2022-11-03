@@ -5,11 +5,14 @@
 
 #include "interfaces/IBaseClientDLL.h"
 #include "interfaces/IClientMode.h"
+#include "interfaces/IClientEntityList.h"
 
 
 extern IBaseClientDLL* g_ClientDLL;
 extern IClientMode* g_ClientMode;
+extern IClientEntityList* g_EntityList;
 
+extern C_BasePlayer** g_LocalPlayer;
 
 namespace Interfaces
 {

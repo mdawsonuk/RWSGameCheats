@@ -2,11 +2,7 @@
 
 #include "sdk/interfaces.h"
 
-
-
-
-
-
+#include "features/bhop.h"
 
 
 namespace Hooks
@@ -16,18 +12,19 @@ namespace Hooks
 	VMTHook clientModeHooks;
 
 
-
 	// TODO: Add hook handlers here:
 
 	bool __stdcall hkCreateMove(float flInputSampleTime, CUserCmd* cmd)
 	{
 		static auto ogCreateMove = clientModeHooks.GetOriginalFn(24);
 
+		auto res = Utils::SpoofStdCall<bool>(ogCreateMove, clientDllGadget, flInputSampleTime, cmd);
 
 		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
-		
+		BHop::OnCreateMove(cmd);
 
-		return Utils::SpoofStdCall<bool>(ogCreateMove, clientDllGadget, flInputSampleTime, cmd);
+
+		return res;
 	}
 
 

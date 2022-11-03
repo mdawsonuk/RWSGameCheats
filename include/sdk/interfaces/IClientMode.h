@@ -1,7 +1,6 @@
 #pragma once
 
-#include <vadefs.h>
-
+#include "common.h"
 
 class C_BaseEntity;
 class C_BasePlayer;
@@ -12,29 +11,12 @@ struct AudioState_t;
 
 enum ButtonCode_t : int;
 
-//TODO: Move these to common header
-typedef __int32 int32;
-typedef unsigned __int32 uint32;
-typedef __int64 int64;
-typedef unsigned __int64 uint64;
-typedef void* (*CreateInterfaceFn)(const char* name, int* returnCode);
-typedef int qboolean;
-typedef uintptr_t uintp;
-
 namespace vgui
 {
 	typedef uintp VPANEL;
 	class Panel;
 	struct AnimationController;
 }
-
-
-//	 
-//		NOTE THAT THIS INTERFACE IS OUTDATED 
-//			-- Before using this for hooking functions double check in IDA that the function you're hooking
-//			   is still at the same index as this (TODO: Should probably update this...)
-//
-
 
 class IClientMode
 {

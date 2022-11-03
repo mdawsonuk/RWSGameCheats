@@ -2,6 +2,7 @@
 
 
 #include "sdk/interfaces.h"
+#include "sdk/netvars.h"
 #include "hooks.h"
 
 bool attached = false;
@@ -49,7 +50,7 @@ bool ProcessAttach()
 #endif
 
     // Setup all interfaces
-    bool success = Interfaces::SetupInterfaces();   
+    bool success = Interfaces::SetupInterfaces();
     if (!success)
     {
         ProcessDetach();
@@ -64,6 +65,12 @@ bool ProcessAttach()
     }
 
     // TODO: need a way to handle netvars
+    success = Netvars::SetupNetvars();
+    if (!success)
+    {
+        ProcessDetach();
+        return false;
+    }
 
     attached = true;
     return true;

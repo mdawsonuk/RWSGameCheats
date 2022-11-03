@@ -22,6 +22,15 @@
     <Filter Include="Header Files\sdk\interfaces">
       <UniqueIdentifier>{b15da853-a391-4e7d-ba41-6f328cf02ad8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sdk\classes">
+      <UniqueIdentifier>{bfd4045d-ad7f-4032-a8b6-f06d36814f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\features">
+      <UniqueIdentifier>{46da200c-e96b-4afc-82c0-7d124c5b0237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\features">
+      <UniqueIdentifier>{71be011b-d91a-44ad-9f9c-805753bcbef4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\sdk\interfaces.h">
@@ -42,6 +51,48 @@
     <ClInclude Include="include\hooks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientEntity.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientUnknown.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IHandleEntity.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientNetworkable.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientThinkable.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientEntityList.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\CUserCmd.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\common.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\QAngle.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\Vector.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\features\bhop.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\C_BaseEntity.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\C_BasePlayer.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\netvars.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -58,6 +109,15 @@
     </ClCompile>
     <ClCompile Include="src\hooks.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\sdk\interfaces\IClientRenderable.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\bhop.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdk\netvars.cpp">
+      <Filter>Source Files\sdk</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

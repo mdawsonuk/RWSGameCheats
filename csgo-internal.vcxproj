@@ -143,17 +143,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\features\bhop.h" />
     <ClInclude Include="include\hooks.h" />
+    <ClInclude Include="include\sdk\classes\CUserCmd.h" />
+    <ClInclude Include="include\sdk\classes\C_BaseEntity.h" />
+    <ClInclude Include="include\sdk\classes\C_BasePlayer.h" />
+    <ClInclude Include="include\sdk\classes\QAngle.h" />
+    <ClInclude Include="include\sdk\classes\Vector.h" />
+    <ClInclude Include="include\sdk\netvars.h" />
     <ClInclude Include="include\sdk\interfaces.h" />
+    <ClInclude Include="include\sdk\common.h" />
     <ClInclude Include="include\sdk\interfaces\IBaseClientDLL.h" />
+    <ClInclude Include="include\sdk\interfaces\IClientEntity.h" />
+    <ClInclude Include="include\sdk\interfaces\IClientEntityList.h" />
     <ClInclude Include="include\sdk\interfaces\IClientMode.h" />
+    <ClInclude Include="include\sdk\interfaces\IClientNetworkable.h" />
+    <ClInclude Include="include\sdk\interfaces\IClientThinkable.h" />
+    <ClInclude Include="include\sdk\interfaces\IClientUnknown.h" />
+    <ClInclude Include="include\sdk\interfaces\IHandleEntity.h" />
     <ClInclude Include="include\utils.h" />
     <ClInclude Include="include\vmthook.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\sdk\interfaces\IClientRenderable.h" />
     <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\features\bhop.cpp" />
     <ClCompile Include="src\hooks.cpp" />
     <ClCompile Include="src\sdk\interfaces.cpp" />
+    <ClCompile Include="src\sdk\netvars.cpp" />
     <ClCompile Include="src\utils.cpp" />
     <ClCompile Include="src\vmthook.cpp" />
   </ItemGroup>
