@@ -66,8 +66,6 @@ public:
 	const char* m_pMapClassname;
 };
 
-// TODO: Macro for getting a netvar 
-
 namespace Netvars
 {
 	struct Table;
@@ -76,7 +74,7 @@ namespace Netvars
 	struct Table
 	{
 		std::string name;
-		int offset;
+		int offset = 0;
 
 		std::map<std::string, int> props;
 		std::vector<TablePtr> childTables;
@@ -93,7 +91,13 @@ namespace Netvars
 		{
 			auto prop = recvTable->m_pProps[i];
 
-			if (prop.m_RecvType == DPT_DataTable)
+			// Hide the spam of array members
+			if (isdigit(prop.m_pVarName[0]))
+			{
+				continue;
+			}
+
+			if (prop.m_RecvType == DPT_DataTable && prop.m_pDataTable)
 			{
 				auto childTable = SetupTable(prop.m_pDataTable);
 				childTable->offset = prop.m_Offset;
@@ -108,28 +112,38 @@ namespace Netvars
 		return table;
 	}
 
-	void DumpTable(TablePtr table, int indent)
+	void DumpTable(FILE* output, TablePtr table, int indent)
 	{
-		printf_s("%*c%-50s: 0x%X\n", indent * 4, ' ', table->name.c_str(), table->offset);
-		
-		for (auto& childTable : table->childTables)
-		{
-			DumpTable(childTable, indent + 1);
-		}
-
 		for (auto iter = table->props.begin(); iter != table->props.end(); ++iter)
 		{
 			auto& prop = *iter;
-			printf_s("%*c%-50s: 0x%X\n", (indent + 1) * 4, ' ', prop.first.c_str(), prop.second);
+			fprintf_s(output, "%*c%-50s: 0x%X\n", (indent + 1) * 4, ' ', prop.first.c_str(), prop.second + table->offset);
+		}
+
+		for (auto& childTable : table->childTables)
+		{
+			fprintf_s(output, "%*c%-50s: 0x%X\n", (indent + 1) * 4, ' ', childTable->name.c_str(), childTable->offset + table->offset);
+			DumpTable(output, childTable, indent + 1);
 		}
 	}
 
 	void DumpTables()
 	{
+		// Let's dump this to a file instead of the console....
+		FILE* output;
+		fopen_s(&output, "netvar_dump.txt", "w");
+		if (!output)
+		{
+			return;
+		}
+
 		for (auto& table : tables)
 		{
-			DumpTable(table, 0);
+			fprintf_s(output, "%-50s\n", table->name.c_str());
+			DumpTable(output, table, 0);
 		}
+
+		fclose(output);
 	}
 
 	int GetOffset(TablePtr table, std::string& varName)
@@ -163,9 +177,9 @@ namespace Netvars
 		return 0; 
 	}
 
-	int GetOffset(std::string& tableName, std::string& varName)
+	int GetOffset(std::string tableName, std::string varName)
 	{
-		for (auto table : tables)
+		for (auto& table : tables)
 		{
 			if (table->name == tableName)
 			{
@@ -181,17 +195,21 @@ namespace Netvars
 
 	bool SetupNetvars()
 	{
-		// Do we iterate until m_pNext is nullptr or points to head again?
 		auto head = g_ClientDLL->GetAllClasses();
 
 		// Setup all tables
 		for (ClientClass* cur = head; cur != nullptr; cur = cur->m_pNext)
 		{
-			auto table = SetupTable(cur->m_pRecvTable);
-			tables.push_back(table);
+			if (cur->m_pRecvTable)
+			{
+				tables.push_back(SetupTable(cur->m_pRecvTable));
+			}
 		}
 
-		DumpTables();
+		// TODO: Uncomment this if you want to dump all tables
+		//			they will be in your csgo directory in the netvar_dump.txt 
+		// 
+		//DumpTables();
 
 		return true;
 	}

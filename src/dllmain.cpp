@@ -57,15 +57,17 @@ bool ProcessAttach()
         return false;
     }
 
-    success = Hooks::SetupHooks();
+    // Setup netvars before hooks because hooks will use them
+    success = Netvars::SetupNetvars();
     if (!success)
     {
         ProcessDetach();
         return false;
     }
 
-    // TODO: need a way to handle netvars
-    success = Netvars::SetupNetvars();
+
+    // Hooks must be set up last
+    success = Hooks::SetupHooks();
     if (!success)
     {
         ProcessDetach();

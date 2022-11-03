@@ -1,9 +1,10 @@
 #include "hooks.h"
 
 #include "sdk/interfaces.h"
-
 #include "features/bhop.h"
 
+#include "sdk/classes/C_BasePlayer.h"
+#include "sdk/classes/Vector.h"
 
 namespace Hooks
 {
@@ -23,10 +24,14 @@ namespace Hooks
 		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
 
+		//auto localPlayer = *g_LocalPlayer;
+
+		//auto& pos = localPlayer->m_vecOrigin();
+		//printf_s("Local Player Pos: (%.2f, %.2f, %.2f)\n", pos.x, pos.y, pos.z);
 
 		return res;
 	}
-
+	
 
 
 	bool SetupHooks()
