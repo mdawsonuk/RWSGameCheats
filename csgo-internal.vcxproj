@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="aimbot.h" />
     <ClInclude Include="include\features\bhop.h" />
     <ClInclude Include="include\hooks.h" />
     <ClInclude Include="include\sdk\classes\CUserCmd.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="include\vmthook.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="aimbot.cpp" />
     <ClCompile Include="include\sdk\interfaces\IClientRenderable.h" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\features\bhop.cpp" />

@@ -5,6 +5,7 @@
 
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
+#include "../aimbot.h"
 
 namespace Hooks
 {
@@ -23,6 +24,7 @@ namespace Hooks
 
 		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
+		AimBot::OnCreateMove(cmd);
 
 		//auto localPlayer = *g_LocalPlayer;
 

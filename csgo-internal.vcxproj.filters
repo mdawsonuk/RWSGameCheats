@@ -93,6 +93,9 @@
     <ClInclude Include="include\sdk\netvars.h">
       <Filter>Header Files\sdk</Filter>
     </ClInclude>
+    <ClInclude Include="aimbot.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -118,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="src\sdk\netvars.cpp">
       <Filter>Source Files\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="aimbot.cpp">
+      <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
