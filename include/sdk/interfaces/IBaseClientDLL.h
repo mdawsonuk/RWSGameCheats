@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common.h"
+#include "sdk/common.h"
 
 class CGlobalVarsBase;
 class ClientClass;
@@ -20,14 +20,6 @@ class IScaleformSlotInitController;
 class IConVar;
 class CSVCMsg_HltvReplay;
 class CEngineGotvSyncPacket;
-
-// TODO: Do we ever need the actual definitions of these?
-template<class T, class I = int>
-class CUtlMemory;
-template<class T, class A = CUtlMemory<T>>
-class CUtlVector;
-template<class T, int nAlignment = 16>
-class CUtlMemoryAligned;
 
 struct ScreenFade_t;
 struct vrect_t;

@@ -99,52 +99,6 @@ public:
 		*this = src;
 	}
 
-	// TODO: Do we need to implement this?
-	/*
-	CRC32_t GetChecksum(void) const
-	{
-		CRC32_t crc;
-
-		CRC32_Init(&crc);
-		CRC32_ProcessBuffer(&crc, &command_number, sizeof(command_number));
-		CRC32_ProcessBuffer(&crc, &tick_count, sizeof(tick_count));
-		CRC32_ProcessBuffer(&crc, &viewangles, sizeof(viewangles));
-		CRC32_ProcessBuffer(&crc, &aimdirection, sizeof(aimdirection));
-		CRC32_ProcessBuffer(&crc, &forwardmove, sizeof(forwardmove));
-		CRC32_ProcessBuffer(&crc, &sidemove, sizeof(sidemove));
-		CRC32_ProcessBuffer(&crc, &upmove, sizeof(upmove));
-		CRC32_ProcessBuffer(&crc, &buttons, sizeof(buttons));
-		CRC32_ProcessBuffer(&crc, &impulse, sizeof(impulse));
-		CRC32_ProcessBuffer(&crc, &weaponselect, sizeof(weaponselect));
-		CRC32_ProcessBuffer(&crc, &weaponsubtype, sizeof(weaponsubtype));
-		CRC32_ProcessBuffer(&crc, &random_seed, sizeof(random_seed));
-		CRC32_ProcessBuffer(&crc, &mousedx, sizeof(mousedx));
-		CRC32_ProcessBuffer(&crc, &mousedy, sizeof(mousedy));
-
-#if defined( INFESTED_DLL ) || defined( DOTA_DLL )
-		CRC32_ProcessBuffer(&crc, &crosshairtrace, sizeof(crosshairtrace));
-#endif
-
-#if defined ( PORTAL2 )
-		CRC32_ProcessBuffer(&crc, &player_held_entity, sizeof(player_held_entity));
-		CRC32_ProcessBuffer(&crc, &held_entity_was_grabbed_through_portal, sizeof(held_entity_was_grabbed_through_portal));
-		CRC32_ProcessBuffer(&crc, &command_acknowledgements_pending, sizeof(command_acknowledgements_pending));
-		CRC32_ProcessBuffer(&crc, &predictedPortalTeleportations, sizeof(predictedPortalTeleportations));
-#endif // PORTAL2
-
-#ifdef INFESTED_DLL
-		CRC32_ProcessBuffer(&crc, &crosshair_entity, sizeof(crosshair_entity));
-		CRC32_ProcessBuffer(&crc, &forced_action, sizeof(forced_action));
-		CRC32_ProcessBuffer(&crc, &sync_kill_ent, sizeof(sync_kill_ent));
-		CRC32_ProcessBuffer(&crc, &skill_dest, sizeof(skill_dest));
-		CRC32_ProcessBuffer(&crc, &skill_dest_ent, sizeof(skill_dest_ent));
-#endif
-		CRC32_Final(&crc);
-
-		return crc;
-	}
-	*/
-
 	// For matching server and client commands for debugging
 	int		command_number;
 

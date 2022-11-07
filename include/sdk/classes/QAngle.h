@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common.h"
+#include "sdk/common.h"
 
 #define FLOAT32_NAN_BITS (uint32)0x7FC00000	// not a number!
 

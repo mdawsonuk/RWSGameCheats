@@ -93,6 +93,30 @@
     <ClInclude Include="include\sdk\netvars.h">
       <Filter>Header Files\sdk</Filter>
     </ClInclude>
+    <ClInclude Include="include\features\chams.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IVModelRender.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IStudioRender.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IAppSystem.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IMaterialSystem.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IMaterial.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IVModelInfo.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -118,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="src\sdk\netvars.cpp">
       <Filter>Source Files\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\chams.cpp">
+      <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
