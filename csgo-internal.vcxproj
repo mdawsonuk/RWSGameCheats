@@ -150,7 +150,9 @@
     <ClInclude Include="include\features\bhop.h" />
     <ClInclude Include="include\features\chams.h" />
     <ClInclude Include="include\features\skinchanger.h" />
+    <ClInclude Include="include\features\glow.h" />
     <ClInclude Include="include\hooks.h" />
+    <ClInclude Include="include\sdk\classes\CGlowObjectManager.h" />
     <ClInclude Include="include\sdk\classes\CUserCmd.h" />
     <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h" />
     <ClInclude Include="include\sdk\classes\C_BaseEntity.h" />
@@ -182,6 +184,7 @@
     <ClCompile Include="include\sdk\interfaces\IClientRenderable.h" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\features\bhop.cpp" />
+    <ClCompile Include="src\features\glow.cpp" />
     <ClCompile Include="src\features\chams.cpp" />
     <ClCompile Include="src\features\skinchanger.cpp" />
     <ClCompile Include="src\hooks.cpp" />
