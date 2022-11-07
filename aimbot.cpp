@@ -6,6 +6,9 @@
 
 #include<cmath>
 
+#include <iostream>
+using namespace std;
+
 namespace AimBot
 {
 
@@ -39,6 +42,7 @@ namespace AimBot
 	}
 
 	QAngle AimTo(Vector target) {
+		
 		auto localPlayer = *g_LocalPlayer;
 
 		auto& playerPos = localPlayer->m_vecOrigin();
@@ -46,19 +50,18 @@ namespace AimBot
 		Vector posDiff = *(new Vector(
 			playerPos.x - target.x,
 			playerPos.y - target.y,
-			playerPos.z - target.z
+			playerPos.z - target.z 
 		));
 
 
-		double hyp = sqrt(pow(posDiff.x, 2) + pow(posDiff.y, 2));
 
 		// use radian trig to find new angle
 		QAngle newAngle = *(new QAngle(
-			(float)(atan((posDiff.z, hyp) * 57.295779513082f)),
-			(float)(atan(posDiff.y / posDiff.x) * 57.295779513082f),
+			(float)(asinf(posDiff.z / sqrt(pow(posDiff.x, 2) + pow(posDiff.y, 2) + pow(posDiff.z, 2))) * 57.295779513082f),
+			(float)(atanf(posDiff.y / posDiff.x) * 57.295779513082f),
 			0.0f
 		));
-
+		
 		if (posDiff.x >= 0.f) {
 			newAngle.y += 180.0f;
 		}
@@ -82,10 +85,12 @@ namespace AimBot
 			auto& playerTeamNum = localPlayer->m_iTeamNum();
 
 			IClientEntityList* entityList = g_EntityList;
-		
+
 			float closest_diff = 999999999.f;
 
-			QAngle* nearestEntityAim = NULL;
+			QAngle nearestEntityAim;
+			QAngle* nearestEntityAimPointer = &nearestEntityAim;
+			bool botFound = FALSE;
 
 			auto highestIndex = entityList->GetHighestEntityIndex();
 
@@ -115,22 +120,25 @@ namespace AimBot
 				QAngle viewAngles = cmd->viewangles;
 				QAngle newViewAngles = AimTo(entityPos);
 
+
 				float diff = sqrt(
 					pow(newViewAngles.x - viewAngles.x, 2) +
 					pow(newViewAngles.y - viewAngles.y, 2)
 				);
 
 				if (diff < closest_diff) {
-					nearestEntityAim = &newViewAngles;
+					closest_diff = diff;
+					nearestEntityAim = newViewAngles;
+					botFound = TRUE;
 				}
 			}
 
-			if (nearestEntityAim == NULL) {
+			if (botFound == FALSE) {
 				return;
 			}
 
 			// set player view angle to aim to nearest found
-			cmd->viewangles = *nearestEntityAim;
+			cmd->viewangles = *nearestEntityAimPointer;
 		}
 	}
 }
