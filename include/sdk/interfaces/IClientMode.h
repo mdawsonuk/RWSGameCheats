@@ -1,6 +1,6 @@
 #pragma once
 
-#include "common.h"
+#include "sdk/common.h"
 
 class C_BaseEntity;
 class C_BasePlayer;

@@ -188,8 +188,6 @@ namespace Netvars
 		}
 
 		// not found ):
-		// TODO: Throw an exception or something if we fail to find a netvar?
-		//		cheat will most likely explode anyway?
 		return 0; 
 	}
 

@@ -41,8 +41,6 @@ void VMTHook::Hook(int index, void* hookFn)
 		return;
 	}
 
-	// TODO: range checks?
-
 	// Replace pointer in hookVtable to the address of the hook handler
 	hookVtable[index + 1] = reinterpret_cast<uintptr_t>(hookFn);
 }

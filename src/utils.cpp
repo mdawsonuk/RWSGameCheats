@@ -13,7 +13,6 @@ namespace Utils
 		MODULEINFO mi = { 0 };
 		if (!GetModuleInformation(GetCurrentProcess(), module, &mi, sizeof(mi)))
 		{
-			// TODO: Debug print error for getting module information?
 			return nullptr;
 		}
 

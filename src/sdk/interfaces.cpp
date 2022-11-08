@@ -8,6 +8,9 @@
 IBaseClientDLL* g_ClientDLL = nullptr; 
 IClientMode* g_ClientMode = nullptr;
 IClientEntityList* g_EntityList = nullptr;
+IVModelRender* g_ModelRender = nullptr;
+IMaterialSystem* g_MaterialSystem = nullptr;
+IVModelInfoClient* g_ModelInfoClient = nullptr;
 
 C_BasePlayer** g_LocalPlayer = nullptr;
 
@@ -50,8 +53,8 @@ namespace Interfaces
 
 		// First use GET_FACTORY to get the exported CreateInterface function from a module
 		GET_FACTORY(clientFactory, "client.dll");
-
-
+		GET_FACTORY(engineFactory, "engine.dll");
+		GET_FACTORY(matSystemFactory, "materialsystem.dll");
 
 		// Then use GET_INTERFACE with the global var, interface type, factory, and the interface name/version
 		// 
@@ -60,6 +63,10 @@ namespace Interfaces
 		GET_INTERFACE(g_ClientDLL, IBaseClientDLL, clientFactory, "VClient018");
 		GET_INTERFACE(g_EntityList, IClientEntityList, clientFactory, "VClientEntityList003");
 
+		GET_INTERFACE(g_ModelRender, IVModelRender, engineFactory, "VEngineModel016");
+		GET_INTERFACE(g_ModelInfoClient, IVModelInfoClient, engineFactory, "VModelInfoClient004");
+
+		GET_INTERFACE(g_MaterialSystem, IMaterialSystem, matSystemFactory, "VMaterialSystem080");
 
 		// Unfortunately, some of the interfaces that are needed for common cheats aren't actually "exported" like above.
 		//		So we need to find a place in code where the pointer is used and create a signature that we scan scan for.
