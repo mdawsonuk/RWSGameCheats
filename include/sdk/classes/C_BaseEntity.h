@@ -51,6 +51,12 @@
 #define FL_TRANSRAGDOLL			(1<<30) // In the process of turning into a client side ragdoll.
 #define FL_UNBLOCKABLE_BY_PLAYER (1<<31) // pusher that can't be blocked by the player
 
+class CBaseHandle
+{
+public:
+    uint32	m_Index;
+};
+
 class C_BaseEntity : public IClientEntity, public IClientModelRenderable
 {
 public:
