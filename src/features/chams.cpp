@@ -3,7 +3,7 @@
 #include "hooks.h"
 #include "sdk/interfaces/IMaterial.h"
 #include "sdk/classes/C_BasePlayer.h"
-#include "sdk/classes/C_BaseCombatWeapon.h"
+#include "sdk/classes/C_PredictedViewModel.h"
 
 namespace Chams
 {
@@ -109,6 +109,12 @@ namespace Chams
 			// It's a weapon
 			else
 			{
+				auto viewModel = reinterpret_cast<C_PredictedViewModel*>(g_EntityList->GetClientEntity(pInfo.entity_index));
+				if (viewModel && viewModel->GetOwner() == *g_LocalPlayer)
+				{
+					return;
+				}
+
 				OverrideWeapon(pInfo);
 			}
 		}

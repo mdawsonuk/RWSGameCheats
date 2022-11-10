@@ -5,6 +5,8 @@
 #include "sdk/netvars.h"
 #include "hooks.h"
 
+#include "features/skinchanger.h"
+
 bool attached = false;
 FILE* conout = nullptr;
 FILE* conin = nullptr;
@@ -19,6 +21,7 @@ void ProcessDetach()
 {
     // Disable all hooks
     Hooks::CleanupHooks();
+    Netvars::UnhookAllRecvProxies();
 
     // TODO: Any other necessary clean up
 
@@ -73,6 +76,11 @@ bool ProcessAttach()
         ProcessDetach();
         return false;
     }
+
+    // Uncomment this to get all current model indices
+#ifdef _DEBUG
+    //SkinChanger::DumpModelIndices();
+#endif
 
     attached = true;
     return true;
