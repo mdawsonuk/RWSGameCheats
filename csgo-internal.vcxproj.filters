@@ -96,6 +96,9 @@
     <ClInclude Include="aimbot.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
+    <ClInclude Include="noflash.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -123,6 +126,9 @@
       <Filter>Source Files\sdk</Filter>
     </ClCompile>
     <ClCompile Include="aimbot.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Desktop\noflash.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>

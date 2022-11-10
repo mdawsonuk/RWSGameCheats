@@ -164,8 +164,10 @@
     <ClInclude Include="include\sdk\interfaces\IHandleEntity.h" />
     <ClInclude Include="include\utils.h" />
     <ClInclude Include="include\vmthook.h" />
+    <ClInclude Include="noflash.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Desktop\noflash.cpp" />
     <ClCompile Include="aimbot.cpp" />
     <ClCompile Include="include\sdk\interfaces\IClientRenderable.h" />
     <ClCompile Include="src\dllmain.cpp" />

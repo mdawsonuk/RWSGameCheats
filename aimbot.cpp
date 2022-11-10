@@ -5,9 +5,11 @@
 #include "sdk/classes/CUserCmd.h"
 
 #include<cmath>
-
 #include <iostream>
 using namespace std;
+
+#define HEAD_BONE_ID ((DWORD) 8)
+
 
 namespace AimBot
 {
@@ -80,6 +82,7 @@ namespace AimBot
 		{
 			auto localPlayer = *g_LocalPlayer;
 
+
 			auto& playerPos = localPlayer->m_vecOrigin();
 
 			auto& playerTeamNum = localPlayer->m_iTeamNum();
@@ -102,7 +105,37 @@ namespace AimBot
 					continue;
 				}
 
+				//-------------------------turn into head position
+
+
 				Vector entityPos = entity->GetAbsOrigin();
+
+				/*
+				uintptr_t boneMatrix = RPM<uintptr_t>(entity + 0x26A8);
+
+				uintptr_t boneMatrix = *reinterpret_cast<uintptr_t*>((C_BaseEntity*)(entity)) + 0x2698;
+
+				// 0x26A8  or  0x2698 
+
+				uintptr_t boneMatrix = *reinterpret_cast<int*>(entity + 0x26A8);
+				
+				Vector entityPos = { *reinterpret_cast<float*>(boneMatrix + 0x30 * 8 + 0x0C),
+				*reinterpret_cast<float*>(boneMatrix + 0x30 * 8 + 0x1C),
+				*reinterpret_cast<float*>(boneMatrix + 0x30 * 8 + 0x2C) };
+				
+				struct boneMatrix_t {
+					::byte pad3[12];
+					float x;
+					::byte pad1[12];
+					float y;
+					::byte pad2[12];
+					float z;
+				};
+				
+				boneMatrix_t skull = *reinterpret_cast<boneMatrix_t*>(boneMatrix + (sizeof(boneMatrix) * 8 ));
+				Vector entityPos = Vector(skull.x, skull.y, skull.z);
+				*/
+
 
 				// if it's on the same team as player don't bother
 				int teamNum = ((C_BaseEntity*)(entity))->m_iTeamNum();
@@ -139,6 +172,12 @@ namespace AimBot
 
 			// set player view angle to aim to nearest found
 			cmd->viewangles = *nearestEntityAimPointer;
+
+			Vector oldPunch = { 0, 0, 0 };
+			int oldShotCount = 0;
+
+			auto& playerPunchAngle = localPlayer->m_aimPunchAngle();
+
 		}
 	}
 }

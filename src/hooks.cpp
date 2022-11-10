@@ -2,6 +2,7 @@
 
 #include "sdk/interfaces.h"
 #include "features/bhop.h"
+#include "../noflash.h"
 
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
@@ -24,6 +25,7 @@ namespace Hooks
 
 		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
+		NoFlash::CheckForFlash();
 		AimBot::OnCreateMove(cmd);
 
 		//auto localPlayer = *g_LocalPlayer;
