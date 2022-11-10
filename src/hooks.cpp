@@ -29,8 +29,6 @@ namespace Hooks
 
 		auto res = Utils::SpoofStdCall<bool>(ogCreateMove, clientDllGadget, flInputSampleTime, cmd);
 
-		Glow::OnFrameStageNotify(cmd);
-
 		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
 
@@ -65,6 +63,8 @@ namespace Hooks
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 
 		default:
+
+			Glow::OnFrameStageNotify();
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 		}

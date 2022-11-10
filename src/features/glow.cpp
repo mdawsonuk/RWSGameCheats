@@ -7,38 +7,36 @@
 namespace Glow
 {
 
-	void OnFrameStageNotify(CUserCmd* cmd)
+	void OnFrameStageNotify()
 	{
-        if (cmd->buttons & IN_JUMP)
-        {
-            auto glowManager = *g_GlowManager;
 
-            //printf_s("m_Size: %d\n", glowManager->m_GlowObjectDefinitions.m_Size);
+        auto glowManager = *g_GlowManager;
 
-            for (int i = 0; i < glowManager->m_GlowObjectDefinitions.m_Size; i++) {
-                GlowObjectDefinition_t& glowObject = glowManager->m_GlowObjectDefinitions[i];
+        //printf_s("m_Size: %d\n", glowManager->m_GlowObjectDefinitions.m_Size);
 
-                //printf_s("m_nNextFreeSlot: %d\n", glowObject.m_nNextFreeSlot);
+        for (int i = 0; i < glowManager->m_GlowObjectDefinitions.m_Size; i++) {
+            GlowObjectDefinition_t& glowObject = glowManager->m_GlowObjectDefinitions[i];
 
-                //             THIS VVVVVV is always -1 but should by -2 to use
-                if (glowObject.m_nNextFreeSlot != ENTRY_IN_USE)
-                    continue;
+            //printf_s("m_nNextFreeSlot: %d\n", glowObject.m_nNextFreeSlot);
 
-                C_BaseEntity* entity = glowObject.m_pEntity;
+            //             THIS VVVVVV is always -1 but should by -2 to use
+            if (glowObject.m_nNextFreeSlot != ENTRY_IN_USE)
+                continue;
 
-                //printf_s("Entity Pos: (%.2f, %.2f, %.2f)\n", entity->m_vecOrigin().x, entity->m_vecOrigin().y, entity->m_vecOrigin().z);
+            C_BaseEntity* entity = glowObject.m_pEntity;
 
-                // for now, just glow everything green
+            //printf_s("Entity Pos: (%.2f, %.2f, %.2f)\n", entity->m_vecOrigin().x, entity->m_vecOrigin().y, entity->m_vecOrigin().z);
 
-                //printf_s("m_vGlowColor: (%.2f, %.2f, %.2f)\n", glowObject.m_vGlowColor.x, glowObject.m_vGlowColor.y, glowObject.m_vGlowColor.z);
-                glowObject.m_vGlowColor = Vector(0.0f, 1.0f, 0.0f);
-                //printf_s("m_flGlowAlpha: %.2f\n", glowObject.m_flGlowAlpha);
-                glowObject.m_flGlowAlpha = 0.5f;
-                glowObject.m_bRenderWhenOccluded = true;
-                //printf_s("m_flBloomAmount: %.2f\n\n\n", glowObject.m_flGlowAlphaMax);
-                glowObject.m_flGlowAlphaMax = 1.0f;
+            // for now, just glow everything green
 
-            }
+            //printf_s("m_vGlowColor: (%.2f, %.2f, %.2f)\n", glowObject.m_vGlowColor.x, glowObject.m_vGlowColor.y, glowObject.m_vGlowColor.z);
+            glowObject.m_vGlowColor = Vector(0.0f, 1.0f, 0.0f);
+            //printf_s("m_flGlowAlpha: %.2f\n", glowObject.m_flGlowAlpha);
+            glowObject.m_flGlowAlpha = 0.5f;
+            glowObject.m_bRenderWhenOccluded = true;
+            //printf_s("m_flBloomAmount: %.2f\n\n\n", glowObject.m_flGlowAlphaMax);
+            glowObject.m_flGlowAlphaMax = 1.0f;
+
         }
 	}
 }

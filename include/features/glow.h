@@ -7,6 +7,6 @@ class CUserCmd;
 namespace Glow
 {
 
-	void OnFrameStageNotify(CUserCmd* cmd);
+	void OnFrameStageNotify();
 
 }
