@@ -1,6 +1,9 @@
 #include "hooks.h"
 
 #include "sdk/interfaces.h"
+#include "features/bhop.h"
+#include "features/glow.h"
+
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
 
@@ -26,6 +29,9 @@ namespace Hooks
 
 		auto res = Utils::SpoofStdCall<bool>(ogCreateMove, clientDllGadget, flInputSampleTime, cmd);
 
+		Glow::OnFrameStageNotify(cmd);
+
+		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
 
 		return res;

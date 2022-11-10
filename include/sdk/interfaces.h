@@ -19,7 +19,7 @@ extern IVModelInfoClient* g_ModelInfoClient;
 
 extern C_BasePlayer** g_LocalPlayer;
 
-extern CGlowObjectManager* g_GlowManager;
+extern CGlowObjectManager** g_GlowManager;
 
 namespace Interfaces
 {

@@ -13,7 +13,7 @@ IMaterialSystem* g_MaterialSystem = nullptr;
 IVModelInfoClient* g_ModelInfoClient = nullptr;
 
 C_BasePlayer** g_LocalPlayer = nullptr;
-CGlowObjectManager* g_GlowManager = nullptr;
+CGlowObjectManager** g_GlowManager = nullptr;
 
 #define GET_FACTORY(var, moduleName) CreateInterfaceFn var = GetCreateInterfaceFn(moduleName); if (!var) return false;
 
@@ -87,7 +87,7 @@ namespace Interfaces
 		//		to use this in game we would do (*g_localPlayer)->SomePlayerFunction()
 		g_LocalPlayer = *reinterpret_cast<C_BasePlayer***>(Utils::SigScan("client.dll", "\x8B\x35\x00\x00\x00\x00\x85\xF6\x74\x42\x8D", "xx????xxxxx") + 2);
 
-		g_GlowManager = *reinterpret_cast<CGlowObjectManager***>(Utils::SigScan("client.dll", "\x0F\x11\x05\x00\x00\x00\x00\x83\xC8\x01",  "xxx????xxx") + 3);
+		g_GlowManager = reinterpret_cast<CGlowObjectManager**>(Utils::SigScan("client.dll", "\x0F\x11\x05\x00\x00\x00\x00\x83\xC8\x01",  "xxx????xxx") + 3);
 
 
 
