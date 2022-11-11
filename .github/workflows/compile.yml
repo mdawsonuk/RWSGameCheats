@@ -1,0 +1,22 @@
+name: Compile Cheats
+
+on: [push, pull_request]
+
+jobs:
+  compile:
+    name: Compile
+    runs-on: windows-latest 
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Setup MSBuild and add to PATH
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Run MSBuild
+        run: msbuild .\csgo-internal.sln
+      - name: Upload csgo-internal.dll
+        uses: actions/upload-artifact@v3
+        with:
+          name: csgo-internal.dll
+          path: |
+            D:\a\RWSGameCheats\RWSGameCheats\bin\Debug\csgo-internal.dll
+            D:\a\RWSGameCheats\RWSGameCheats\bin\Debug\csgo-internal.pdb
