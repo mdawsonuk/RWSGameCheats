@@ -8,6 +8,10 @@
 #include "interfaces/IClientEntityList.h"
 #include "interfaces/IVModelRender.h"
 #include "interfaces/IVModelInfo.h"
+#include "interfaces/IGameResources.h"
+
+// This feels wrong
+#include "classes/C_PlayerResource.h"
 
 extern IBaseClientDLL* g_ClientDLL;
 extern IClientMode* g_ClientMode;
@@ -15,6 +19,8 @@ extern IClientEntityList* g_EntityList;
 extern IVModelRender* g_ModelRender;
 extern IMaterialSystem* g_MaterialSystem;
 extern IVModelInfoClient* g_ModelInfoClient;
+
+extern C_PlayerResource** g_PlayerResource;
 
 extern C_BasePlayer** g_LocalPlayer;
 

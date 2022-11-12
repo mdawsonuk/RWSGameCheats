@@ -12,6 +12,7 @@ IVModelRender* g_ModelRender = nullptr;
 IMaterialSystem* g_MaterialSystem = nullptr;
 IVModelInfoClient* g_ModelInfoClient = nullptr;
 
+C_PlayerResource** g_PlayerResource = nullptr;
 C_BasePlayer** g_LocalPlayer = nullptr;
 
 #define GET_FACTORY(var, moduleName) CreateInterfaceFn var = GetCreateInterfaceFn(moduleName); if (!var) return false;
@@ -85,7 +86,15 @@ namespace Interfaces
 		//		to where the local player pointer will be
 		//		to use this in game we would do (*g_localPlayer)->SomePlayerFunction()
 		g_LocalPlayer = *reinterpret_cast<C_BasePlayer***>(Utils::SigScan("client.dll", "\x8B\x35\x00\x00\x00\x00\x85\xF6\x74\x42\x8D", "xx????xxxxx") + 2);
+		DUMP_INTERFACE(g_LocalPlayer);
 
+		// We need the GameResources singleton function call
+		//     To find this signature I did string searches to identify where the code would be for
+		//     one of the functions which calls this function. It was identified in the latest Windows client.dll
+		//     as being sub_10749A50 (10/11/2022). 
+		//     This uses dword_13228000 as its reference to the interface, which can be used to gen a sig
+		g_PlayerResource = *reinterpret_cast<C_PlayerResource***>(Utils::SigScan("client.dll", "\x8B\x35\x00\x00\x00\x00\x85\xF6\x0F\x84\x00\x00\x00\x00\x81", "xx????xxxx????x") + 2);
+		DUMP_INTERFACE(g_PlayerResource);
 
 
 		return true;
