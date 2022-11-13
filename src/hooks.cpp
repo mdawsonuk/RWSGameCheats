@@ -39,6 +39,9 @@ namespace Hooks
 	{
 		static auto ogDrawModelExecute = Hooks::modelRenderHooks->GetOriginalFn(21);
 		
+		if (g_ModelRender->IsForcedMaterialOverride())
+			return Utils::SpoofThisCall<bool>(ogDrawModelExecute, Hooks::engineDllGadget, _this, pRenderContext, &state, &pInfo, pCustomBoneToWorld);
+
 		// Override any necessary materials
 		Chams::OnDrawModelExecute(_this, pRenderContext, state, pInfo, pCustomBoneToWorld);
 
