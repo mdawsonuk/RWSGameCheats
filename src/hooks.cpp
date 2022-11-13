@@ -62,9 +62,13 @@ namespace Hooks
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 
-		default:
+		case FRAME_RENDER_START:
 
 			Glow::OnFrameStageNotify();
+
+			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
+
+		default:
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 		}

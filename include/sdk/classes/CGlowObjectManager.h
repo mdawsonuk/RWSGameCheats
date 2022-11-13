@@ -29,10 +29,10 @@ public:
 };
 
 struct GlowObjectDefinition_t {
-    C_BaseEntity* m_pEntity;
+    int m_nNextFreeSlot;
+    IClientEntity* m_pEntity;
     Vector m_vGlowColor;
-    float m_flGlowAlpha;
-
+    float m_flAlpha;
     bool m_bGlowAlphaCappedByRenderAlpha;
     float m_flGlowAlphaFunctionOfMaxVelocity;
     float m_flGlowAlphaMax;
@@ -40,12 +40,9 @@ struct GlowObjectDefinition_t {
     bool m_bRenderWhenOccluded;
     bool m_bRenderWhenUnoccluded;
     bool m_bFullBloomRender;
-    int m_nFullBloomStencilTestValue; // only render full bloom objects if stencil is equal to this value (value of -1 implies no stencil test)
-    int m_nRenderStyle;
+    int m_nFullBloomStencilTestValue;
+    int m_nGlowStyle;
     int m_nSplitScreenSlot;
-
-    // Linked list of free slots
-    int m_nNextFreeSlot;
 };
 
 #define END_OF_FREE_LIST -1
