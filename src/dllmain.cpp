@@ -5,6 +5,9 @@
 #include "sdk/netvars.h"
 #include "hooks.h"
 
+// TODO: Use hooks instead of injection initialisation
+#include "features\difficulty.h"
+
 bool attached = false;
 FILE* conout = nullptr;
 FILE* conin = nullptr;
@@ -65,6 +68,7 @@ bool ProcessAttach()
         return false;
     }
 
+    Difficulty::OnRoundStart();
 
     // Hooks must be set up last
     success = Hooks::SetupHooks();

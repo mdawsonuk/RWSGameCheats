@@ -13,7 +13,7 @@ type& name##() \
 	return *reinterpret_cast<type*>(reinterpret_cast<uintptr_t>(this) + offset); \
 }
 
-#define NETVAR_ARRAY(name, type, tablename, varName) \
+#define NETVAR_ARRAY(name, type, tableName, varName) \
 type* name##() \
 { \
 	static int offset = Netvars::GetOffset(tableName, varName); \

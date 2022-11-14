@@ -13,6 +13,7 @@
 
 // This feels wrong
 #include "classes/C_PlayerResource.h"
+#include "classes/C_CS_PlayerResource.h"
 
 extern IBaseClientDLL* g_ClientDLL;
 extern IClientMode* g_ClientMode;
@@ -23,6 +24,7 @@ extern IVModelInfoClient* g_ModelInfoClient;
 extern IVEngineClient* g_EngineClient;
 
 extern C_PlayerResource** g_PlayerResource;
+extern C_CS_PlayerResource** g_CSPlayerResource;
 
 extern C_BasePlayer** g_LocalPlayer;
 
@@ -34,7 +36,6 @@ namespace Interfaces
 	
 	// Setup all required interfaces, must be done before the interfaces are used...
 	bool SetupInterfaces();
-	
 
 	// Convenience wrapper that casts the returned void* from CreateInterface to the correct type
 	template<class T = void>

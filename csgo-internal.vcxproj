@@ -155,6 +155,7 @@
     <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h" />
     <ClInclude Include="include\sdk\classes\C_BaseEntity.h" />
     <ClInclude Include="include\sdk\classes\C_BasePlayer.h" />
+    <ClInclude Include="include\sdk\classes\C_CS_PlayerResource.h" />
     <ClInclude Include="include\sdk\classes\C_PlayerResource.h" />
     <ClInclude Include="include\sdk\classes\QAngle.h" />
     <ClInclude Include="include\sdk\classes\Vector.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\features\bhop.cpp" />
     <ClCompile Include="src\features\chams.cpp" />
+    <ClCompile Include="src\features\difficulty.cpp" />
     <ClCompile Include="src\hooks.cpp" />
     <ClCompile Include="src\sdk\interfaces.cpp" />
     <ClCompile Include="src\sdk\netvars.cpp" />
