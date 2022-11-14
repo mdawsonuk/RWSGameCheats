@@ -68,6 +68,8 @@ namespace Interfaces
 		GET_INTERFACE(g_ModelInfoClient, IVModelInfoClient, engineFactory, "VModelInfoClient004");
 
 		GET_INTERFACE(g_MaterialSystem, IMaterialSystem, matSystemFactory, "VMaterialSystem080");
+		
+		GET_INTERFACE(g_EngineClient, IVEngineClient, engineFactory, "VEngineClient014");
 
 		// Unfortunately, some of the interfaces that are needed for common cheats aren't actually "exported" like above.
 		//		So we need to find a place in code where the pointer is used and create a signature that we scan scan for.
@@ -93,8 +95,8 @@ namespace Interfaces
 		//     one of the functions which calls this function. It was identified in the latest Windows client.dll
 		//     as being sub_10749A50 (10/11/2022). 
 		//     This uses dword_13228000 as its reference to the interface, which can be used to gen a sig
-		g_PlayerResource = *reinterpret_cast<C_PlayerResource***>(Utils::SigScan("client.dll", "\x8B\x35\x00\x00\x00\x00\x85\xF6\x0F\x84\x00\x00\x00\x00\x81", "xx????xxxx????x") + 2);
-		DUMP_INTERFACE(g_PlayerResource);
+		//g_PlayerResource = *reinterpret_cast<C_PlayerResource***>(Utils::SigScan("client.dll", "\x8B\x35\x00\x00\x00\x00\x85\xF6\x0F\x84\x00\x00\x00\x00\x81", "xx????xxxx????x") + 2);
+		//DUMP_INTERFACE(g_PlayerResource);
 
 
 		return true;
