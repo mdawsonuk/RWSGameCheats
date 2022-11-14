@@ -11,6 +11,7 @@ IClientEntityList* g_EntityList = nullptr;
 IVModelRender* g_ModelRender = nullptr;
 IMaterialSystem* g_MaterialSystem = nullptr;
 IVModelInfoClient* g_ModelInfoClient = nullptr;
+IVEngineClient* g_EngineClient = nullptr;
 
 C_PlayerResource** g_PlayerResource = nullptr;
 C_BasePlayer** g_LocalPlayer = nullptr;
