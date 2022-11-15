@@ -1,22 +1,25 @@
 #include "hooks.h"
 
 #include "sdk/interfaces.h"
+#include "features/bhop.h"
+#include "features/glow.h"
+
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
 
 #include "features/bhop.h"
 #include "features/chams.h"
-
+#include "features/skinchanger.h"
 
 namespace Hooks
 {
 	void* clientDllGadget;
 	void* engineDllGadget;
 
+	std::shared_ptr<VMTHook> clientHooks;
 	std::shared_ptr<VMTHook> clientModeHooks;
 	std::shared_ptr<VMTHook> modelRenderHooks;
-
-	// TODO: Add hook handlers here:
+	std::shared_ptr<VMTHook> modelInfoHooks;
 
 	bool __stdcall hkCreateMove(float flInputSampleTime, CUserCmd* cmd)
 	{
@@ -24,6 +27,7 @@ namespace Hooks
 
 		auto res = Utils::SpoofStdCall<bool>(ogCreateMove, clientDllGadget, flInputSampleTime, cmd);
 
+		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
 
 		return res;
@@ -33,6 +37,9 @@ namespace Hooks
 	{
 		static auto ogDrawModelExecute = Hooks::modelRenderHooks->GetOriginalFn(21);
 		
+		if (g_ModelRender->IsForcedMaterialOverride())
+			return Utils::SpoofThisCall<bool>(ogDrawModelExecute, Hooks::engineDllGadget, _this, pRenderContext, &state, &pInfo, pCustomBoneToWorld);
+
 		// Override any necessary materials
 		Chams::OnDrawModelExecute(_this, pRenderContext, state, pInfo, pCustomBoneToWorld);
 
@@ -44,10 +51,34 @@ namespace Hooks
 		return res;
 	}
 
+	void __fastcall hkFrameStageNotify(void* _this, void* edx, ClientFrameStage_t curStage)
+	{
+		static auto ogFrameStageNotify = Hooks::clientHooks->GetOriginalFn(37);
+
+		switch (curStage)
+		{
+		case FRAME_NET_UPDATE_POSTDATAUPDATE_START:
+
+			SkinChanger::OnFramePostDataUpdateStart();
+
+			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
+
+		case FRAME_RENDER_START:
+
+			Glow::OnFrameStageNotify();
+
+			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
+
+		default:
+
+			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
+		}
+
+	}
+
 	bool SetupHooks()
 	{
 		// Find gadgets in required dlls
-		//		Can probably just use client.dll gadget for all since it's a whitelisted dll?
 		clientDllGadget = Utils::GetRetAddrSpoofGadget("client.dll");
 		if (!clientDllGadget)
 		{
@@ -55,6 +86,10 @@ namespace Hooks
 		}
 
 		engineDllGadget = Utils::GetRetAddrSpoofGadget("engine.dll");
+		if (!engineDllGadget)
+		{
+			return false;
+		}
 
 		// Setup VMTHook objects for every vtable we want to hook functions in
 		clientModeHooks = std::shared_ptr<VMTHook>(new VMTHook(reinterpret_cast<void**>(g_ClientMode)));
@@ -62,9 +97,17 @@ namespace Hooks
 		// More ClientMode hooks here...
 		clientModeHooks->EnableHooks();
 
+		clientHooks = std::shared_ptr<VMTHook>(new VMTHook(reinterpret_cast<void**>(g_ClientDLL)));
+		clientHooks->Hook(37, hkFrameStageNotify);
+		clientHooks->EnableHooks();
+
 		modelRenderHooks = std::shared_ptr<VMTHook>(new VMTHook(reinterpret_cast<void**>(g_ModelRender)));
 		modelRenderHooks->Hook(21, hkDrawModelExecute);
 		modelRenderHooks->EnableHooks();
+
+		// Netvar recv proxy hooks
+		SkinChanger::ogRecvProxy_nModelIndex = Netvars::HookRecvProxy("DT_BaseViewModel", "m_nModelIndex", SkinChanger::RecvProxy_nModelIndex);
+		SkinChanger::ogRecvProxy_nSequence = Netvars::HookRecvProxy("DT_BaseViewModel", "m_nSequence", SkinChanger::RecvProxy_nSequence);
 
 		return true;
 	}
@@ -72,10 +115,13 @@ namespace Hooks
 	void CleanupHooks()
 	{
 		// Call DisableHooks on every VMTHook object
-		//		TODO: Is this even necessary? Will the dtors be called automatically when unloading?
 		if (clientModeHooks)
 		{
 			clientModeHooks->DisableHooks();
+		}
+		if (clientHooks)
+		{
+			clientHooks->DisableHooks();
 		}
 		if (modelRenderHooks)
 		{

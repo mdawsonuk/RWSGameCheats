@@ -7,8 +7,8 @@
 #include "../include/gui/guiControl.h"
 #include "../include/gui/gui.h"
 
-bool isBhop = false;
-bool isChams = false;
+#include "features/skinchanger.h"
+
 bool attached = false;
 FILE* conout = nullptr;
 FILE* conin = nullptr;
@@ -23,6 +23,7 @@ void ProcessDetach()
 {
     // Disable all hooks
     Hooks::CleanupHooks();
+    Netvars::UnhookAllRecvProxies();
 
     // TODO: Any other necessary clean up
 
@@ -77,6 +78,13 @@ bool ProcessAttach()
         ProcessDetach();
         return false;
     }
+
+    // Uncomment this to get all current model indices
+#ifdef _DEBUG
+    //SkinChanger::DumpModelIndices();
+#endif
+    // Load skin change definitions
+    SkinChanger::LoadSkinChanges();
 
     attached = true;
     return true;

@@ -117,11 +117,25 @@
     <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h">
       <Filter>Header Files\sdk\classes</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="include\gui\guiControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\gui\gui.h">
       <Filter>Header Files</Filter>
+=======
+    <ClInclude Include="include\features\skinchanger.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\C_PredictedViewModel.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\CGlowObjectManager.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\features\glow.h">
+      <Filter>Header Files\features</Filter>
+>>>>>>> 029a1266c5754c7248dfd7697cb848100466a23d
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -149,11 +163,19 @@
     <ClCompile Include="src\features\chams.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="src\utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\gui\gui.cpp">
       <Filter>Source Files</Filter>
+=======
+    <ClCompile Include="src\features\skinchanger.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\glow.cpp">
+      <Filter>Source Files\features</Filter>
+>>>>>>> 029a1266c5754c7248dfd7697cb848100466a23d
     </ClCompile>
   </ItemGroup>
 </Project>

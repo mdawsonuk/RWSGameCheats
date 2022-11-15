@@ -8,6 +8,7 @@
 #include "interfaces/IClientEntityList.h"
 #include "interfaces/IVModelRender.h"
 #include "interfaces/IVModelInfo.h"
+#include "classes/CGlowObjectManager.h"
 
 extern IBaseClientDLL* g_ClientDLL;
 extern IClientMode* g_ClientMode;
@@ -18,6 +19,7 @@ extern IVModelInfoClient* g_ModelInfoClient;
 
 extern C_BasePlayer** g_LocalPlayer;
 
+extern CGlowObjectManager* g_GlowManager;
 
 namespace Interfaces
 {

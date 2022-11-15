@@ -149,13 +149,20 @@
   <ItemGroup>
     <ClInclude Include="include\features\bhop.h" />
     <ClInclude Include="include\features\chams.h" />
+<<<<<<< HEAD
     <ClInclude Include="include\gui\gui.h" />
     <ClInclude Include="include\gui\guiControl.h" />
+=======
+    <ClInclude Include="include\features\skinchanger.h" />
+    <ClInclude Include="include\features\glow.h" />
+>>>>>>> 029a1266c5754c7248dfd7697cb848100466a23d
     <ClInclude Include="include\hooks.h" />
+    <ClInclude Include="include\sdk\classes\CGlowObjectManager.h" />
     <ClInclude Include="include\sdk\classes\CUserCmd.h" />
     <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h" />
     <ClInclude Include="include\sdk\classes\C_BaseEntity.h" />
     <ClInclude Include="include\sdk\classes\C_BasePlayer.h" />
+    <ClInclude Include="include\sdk\classes\C_PredictedViewModel.h" />
     <ClInclude Include="include\sdk\classes\QAngle.h" />
     <ClInclude Include="include\sdk\classes\Vector.h" />
     <ClInclude Include="include\sdk\interfaces\IAppSystem.h" />
@@ -182,8 +189,13 @@
     <ClCompile Include="include\sdk\interfaces\IClientRenderable.h" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\features\bhop.cpp" />
+    <ClCompile Include="src\features\glow.cpp" />
     <ClCompile Include="src\features\chams.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="src\gui\gui.cpp" />
+=======
+    <ClCompile Include="src\features\skinchanger.cpp" />
+>>>>>>> 029a1266c5754c7248dfd7697cb848100466a23d
     <ClCompile Include="src\hooks.cpp" />
     <ClCompile Include="src\sdk\interfaces.cpp" />
     <ClCompile Include="src\sdk\netvars.cpp" />
