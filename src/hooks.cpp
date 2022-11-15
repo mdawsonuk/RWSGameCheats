@@ -1,6 +1,9 @@
 #include "hooks.h"
 
 #include "sdk/interfaces.h"
+#include "features/bhop.h"
+#include "features/glow.h"
+
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
 
@@ -24,6 +27,7 @@ namespace Hooks
 
 		auto res = Utils::SpoofStdCall<bool>(ogCreateMove, clientDllGadget, flInputSampleTime, cmd);
 
+		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
 
 		return res;
@@ -33,6 +37,9 @@ namespace Hooks
 	{
 		static auto ogDrawModelExecute = Hooks::modelRenderHooks->GetOriginalFn(21);
 		
+		if (g_ModelRender->IsForcedMaterialOverride())
+			return Utils::SpoofThisCall<bool>(ogDrawModelExecute, Hooks::engineDllGadget, _this, pRenderContext, &state, &pInfo, pCustomBoneToWorld);
+
 		// Override any necessary materials
 		Chams::OnDrawModelExecute(_this, pRenderContext, state, pInfo, pCustomBoneToWorld);
 
@@ -53,6 +60,12 @@ namespace Hooks
 		case FRAME_NET_UPDATE_POSTDATAUPDATE_START:
 
 			SkinChanger::OnFramePostDataUpdateStart();
+
+			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
+
+		case FRAME_RENDER_START:
+
+			Glow::OnFrameStageNotify();
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 
