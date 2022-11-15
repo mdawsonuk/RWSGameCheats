@@ -1,4 +1,4 @@
-#include "../aimbot.h"
+#include "features/aimbot.h"
 
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"

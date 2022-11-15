@@ -2,12 +2,12 @@
 
 #include "sdk/interfaces.h"
 #include "features/bhop.h"
-#include "../noflash.h"
+#include "features/noflash.h"
 
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
-#include "../aimbot.h"
-#include "../norecoil.h"
+#include "features/aimbot.h"
+#include "features/norecoil.h"
 
 namespace Hooks
 {
