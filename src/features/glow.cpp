@@ -10,7 +10,7 @@ namespace Glow
 	void OnFrameStageNotify()
 	{
 
-        auto glowManager = *g_GlowManager;
+        auto glowManager = g_GlowManager;
 
         for (int i = 0; i < glowManager->m_GlowObjectDefinitions.m_Size; i++) {
             GlowObjectDefinition_t& glowObject = glowManager->m_GlowObjectDefinitions[i];
