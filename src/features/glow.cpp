@@ -9,42 +9,39 @@ namespace Glow
 
 	void OnFrameStageNotify()
 	{
+		for (int i = 0; i < g_GlowManager->m_GlowObjectDefinitions.m_Size; i++) {
+			GlowObjectDefinition_t& glowObject = g_GlowManager->m_GlowObjectDefinitions[i];
 
-        auto glowManager = g_GlowManager;
+			if (glowObject.m_nNextFreeSlot != ENTRY_IN_USE)
+				continue;
 
-        for (int i = 0; i < glowManager->m_GlowObjectDefinitions.m_Size; i++) {
-            GlowObjectDefinition_t& glowObject = glowManager->m_GlowObjectDefinitions[i];
+			auto localPlayer = *g_LocalPlayer;
 
-            if (glowObject.m_nNextFreeSlot != ENTRY_IN_USE)
-                continue;
+			if (!localPlayer)
+				continue;
 
-            auto localPlayer = *g_LocalPlayer;
+			C_BaseEntity* entity = (C_BaseEntity*)glowObject.m_pEntity;
 
-            if (!localPlayer)
-                continue;
+			if (entity->m_iTeamNum() == localPlayer->m_iTeamNum()) {
+				glowObject.m_vGlowColor.x = 0.f;
+				glowObject.m_vGlowColor.y = 1.f;
+				glowObject.m_vGlowColor.z = 0.f;
+			}
+			else if (entity->m_iTeamNum() != 0) {
+				glowObject.m_vGlowColor.x = 1.f;
+				glowObject.m_vGlowColor.y = 0.f;
+				glowObject.m_vGlowColor.z = 0.f;
+			}
+			else {
+				glowObject.m_vGlowColor.x = 0.f;
+				glowObject.m_vGlowColor.y = 0.f;
+				glowObject.m_vGlowColor.z = 1.f;
+			}
 
-            C_BaseEntity* entity = (C_BaseEntity*)glowObject.m_pEntity;
-
-            if (entity->m_iTeamNum() == localPlayer->m_iTeamNum()) {
-                glowObject.m_vGlowColor.x = 0.f;
-                glowObject.m_vGlowColor.y = 1.f;
-                glowObject.m_vGlowColor.z = 0.f;
-            }
-            else if (entity->m_iTeamNum() != 0) {
-                glowObject.m_vGlowColor.x = 1.f;
-                glowObject.m_vGlowColor.y = 0.f;
-                glowObject.m_vGlowColor.z = 0.f;
-            }
-            else {
-                glowObject.m_vGlowColor.x = 0.f;
-                glowObject.m_vGlowColor.y = 0.f;
-                glowObject.m_vGlowColor.z = 1.f;
-            }
-            
-            glowObject.m_flAlpha = 1.f;
-            glowObject.m_bRenderWhenOccluded = true;
-            glowObject.m_bRenderWhenUnoccluded = true;
-            glowObject.m_bFullBloomRender = false;
-        }
+			glowObject.m_flAlpha = 1.f;
+			glowObject.m_bRenderWhenOccluded = true;
+			glowObject.m_bRenderWhenUnoccluded = true;
+			glowObject.m_bFullBloomRender = false;
+		}
 	}
 }
