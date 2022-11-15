@@ -8,6 +8,8 @@
 #include <iostream>
 using namespace std;
 
+
+
 #define HEAD_BONE_ID ((DWORD) 8)
 
 
@@ -75,6 +77,19 @@ namespace AimBot
 		return newAngle;
 	}
 
+	Vector GetBonePosition(C_BaseEntity* pEntity)
+	{
+		Vector vecBone;
+		vecBone.Init();
+
+		//matrix3x4a_t mMatrixArray[128];
+		//pEntity->SetupBones(mMatrixArray, 128, 256, 0);
+		//matrix3x4_t mHitboxMatrix = mMatrixArray[8];
+		//vecBone = Vector(mHitboxMatrix.m_flMatVal[0][3], mHitboxMatrix.m_flMatVal[1][3], mHitboxMatrix.m_flMatVal[2][3]);
+
+		return vecBone;
+	}
+
 	void OnCreateMove(CUserCmd* cmd)
 	{
 		// when we shoot
@@ -109,32 +124,6 @@ namespace AimBot
 
 
 				Vector entityPos = entity->GetAbsOrigin();
-
-				/*
-				uintptr_t boneMatrix = RPM<uintptr_t>(entity + 0x26A8);
-
-				uintptr_t boneMatrix = *reinterpret_cast<uintptr_t*>((C_BaseEntity*)(entity)) + 0x2698;
-
-				// 0x26A8  or  0x2698 
-
-				uintptr_t boneMatrix = *reinterpret_cast<int*>(entity + 0x26A8);
-				
-				Vector entityPos = { *reinterpret_cast<float*>(boneMatrix + 0x30 * 8 + 0x0C),
-				*reinterpret_cast<float*>(boneMatrix + 0x30 * 8 + 0x1C),
-				*reinterpret_cast<float*>(boneMatrix + 0x30 * 8 + 0x2C) };
-				
-				struct boneMatrix_t {
-					::byte pad3[12];
-					float x;
-					::byte pad1[12];
-					float y;
-					::byte pad2[12];
-					float z;
-				};
-				
-				boneMatrix_t skull = *reinterpret_cast<boneMatrix_t*>(boneMatrix + (sizeof(boneMatrix) * 8 ));
-				Vector entityPos = Vector(skull.x, skull.y, skull.z);
-				*/
 
 
 				// if it's on the same team as player don't bother
@@ -172,11 +161,6 @@ namespace AimBot
 
 			// set player view angle to aim to nearest found
 			cmd->viewangles = *nearestEntityAimPointer;
-
-			Vector oldPunch = { 0, 0, 0 };
-			int oldShotCount = 0;
-
-			auto& playerPunchAngle = localPlayer->m_aimPunchAngle();
 
 		}
 	}

@@ -7,6 +7,7 @@
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
 #include "../aimbot.h"
+#include "../norecoil.h"
 
 namespace Hooks
 {
@@ -27,6 +28,7 @@ namespace Hooks
 		BHop::OnCreateMove(cmd);
 		NoFlash::CheckForFlash();
 		AimBot::OnCreateMove(cmd);
+		NoRecoil::OnCreateMove(cmd);
 
 		//auto localPlayer = *g_LocalPlayer;
 

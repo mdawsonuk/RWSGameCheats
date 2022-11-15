@@ -99,6 +99,9 @@
     <ClInclude Include="noflash.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
+    <ClInclude Include="norecoil.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -129,6 +132,9 @@
       <Filter>Source Files\features</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Desktop\noflash.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="norecoil.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,7 +2,7 @@
 
 class CUserCmd;
 
-namespace AimBot
+namespace NoRecoil
 {
     void OnCreateMove(CUserCmd* cmd);
 

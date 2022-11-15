@@ -165,11 +165,13 @@
     <ClInclude Include="include\utils.h" />
     <ClInclude Include="include\vmthook.h" />
     <ClInclude Include="noflash.h" />
+    <ClInclude Include="norecoil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Desktop\noflash.cpp" />
     <ClCompile Include="aimbot.cpp" />
     <ClCompile Include="include\sdk\interfaces\IClientRenderable.h" />
+    <ClCompile Include="norecoil.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\features\bhop.cpp" />
     <ClCompile Include="src\hooks.cpp" />
