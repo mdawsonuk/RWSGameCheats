@@ -21,8 +21,6 @@ namespace Hooks
 	std::shared_ptr<VMTHook> modelRenderHooks;
 	std::shared_ptr<VMTHook> modelInfoHooks;
 
-	// TODO: Add hook handlers here:
-
 	bool __stdcall hkCreateMove(float flInputSampleTime, CUserCmd* cmd)
 	{
 		static auto ogCreateMove = clientModeHooks->GetOriginalFn(24);

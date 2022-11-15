@@ -81,6 +81,8 @@ bool ProcessAttach()
 #ifdef _DEBUG
     //SkinChanger::DumpModelIndices();
 #endif
+    // Load skin change definitions
+    SkinChanger::LoadSkinChanges();
 
     attached = true;
     return true;

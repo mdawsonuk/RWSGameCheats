@@ -5,12 +5,6 @@
 
 namespace SkinChanger
 {
-
-	// TODO: Hook frame stage notify
-
-	// TODO: Hook DT_BaseViewModel m_nModelIndex
-	// TODO: Hook DT_BaseViewModel m_nSequence
-
 	void OnFramePostDataUpdateStart();
 
 	extern RecvProxyFn ogRecvProxy_nModelIndex;
@@ -20,4 +14,6 @@ namespace SkinChanger
 	void RecvProxy_nSequence(const CRecvProxyData* pData, void* pStruct, void* pOut);
 
 	void DumpModelIndices();
+
+	void LoadSkinChanges();
 }

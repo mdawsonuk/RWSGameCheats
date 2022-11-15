@@ -18,7 +18,7 @@ public:
 	NETVAR(m_iEntityQuality, int, "DT_EconEntity", "m_iEntityQuality");
 	NETVAR(m_iItemIDHigh, int, "DT_EconEntity", "m_iItemIDHigh");
 	NETVAR(m_iItemIDLow, int, "DT_EconEntity", "m_iItemIDLow");
-	NETVAR(m_iItemDefinitionIndex, int, "DT_EconEntity", "m_iItemDefinitionIndex");
+	NETVAR(m_iItemDefinitionIndex, short, "DT_EconEntity", "m_iItemDefinitionIndex");
 
 	C_BasePlayer* GetOwner()
 	{

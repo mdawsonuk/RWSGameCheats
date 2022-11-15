@@ -48,7 +48,7 @@ public:
 	NETVAR(m_iHealth, int, "DT_CSPlayer", "m_iHealth");
 
 	NETVAR(m_hActiveWeapon, CBaseHandle, "DT_BaseCombatCharacter", "m_hActiveWeapon");
-	NETVAR(m_hMyWeapons, CBaseHandle, "DT_BaseCombatCharacter", "m_hMyWeapons");
+	NETVAR_ARRAY(m_hMyWeapons, CBaseHandle, "DT_BaseCombatCharacter", "m_hMyWeapons");
 
 	bool IsAlive()
 	{
