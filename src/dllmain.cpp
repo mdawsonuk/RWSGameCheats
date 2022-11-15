@@ -4,7 +4,11 @@
 #include "sdk/interfaces.h"
 #include "sdk/netvars.h"
 #include "hooks.h"
+#include "../include/gui/guiControl.h"
+#include "../include/gui/gui.h"
 
+bool isBhop = false;
+bool isChams = false;
 bool attached = false;
 FILE* conout = nullptr;
 FILE* conin = nullptr;
@@ -78,7 +82,10 @@ bool ProcessAttach()
     return true;
 }
 
-
+int WINAPI myThread(HINSTANCE hInst, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
+    Gui::guiWindow(hInst, hPrevInstance, pCmdLine, nCmdShow);
+    return 0;
+}
 
 // DllEntry
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
@@ -93,7 +100,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
         {
             return FALSE;
         }
-
+        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)myThread, hinstDLL, 0, nullptr));
         // We aren't starting a thread here since everything is based on hooks
         return ProcessAttach();
         

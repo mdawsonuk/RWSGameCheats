@@ -117,6 +117,12 @@
     <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h">
       <Filter>Header Files\sdk\classes</Filter>
     </ClInclude>
+    <ClInclude Include="include\gui\guiControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\gui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -126,9 +132,6 @@
       <Filter>Source Files\sdk</Filter>
     </ClCompile>
     <ClCompile Include="src\vmthook.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\hooks.cpp">
@@ -145,6 +148,12 @@
     </ClCompile>
     <ClCompile Include="src\features\chams.cpp">
       <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\gui.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
