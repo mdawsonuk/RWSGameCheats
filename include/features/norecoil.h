@@ -1,9 +1,11 @@
 #pragma once
 
-class CUserCmd;
+#include "sdk/classes/CUserCmd.h"
+
 
 namespace NoRecoil
 {
-    void OnCreateMove(CUserCmd* cmd);
+	
+	void OnCreateMove(CUserCmd* cmd);
 
 }

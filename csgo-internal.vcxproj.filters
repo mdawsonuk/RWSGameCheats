@@ -134,5 +134,8 @@
     <ClCompile Include="src\features\aimbot.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
+    <ClCompile Include="src\features\noflash.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-#include "../noflash.h"
+#include "features/noflash.h"
 
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"

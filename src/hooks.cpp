@@ -8,6 +8,7 @@
 #include "sdk/classes/Vector.h"
 #include "features/aimbot.h"
 #include "features/norecoil.h"
+#include "features/noflash.h"
 
 namespace Hooks
 {
