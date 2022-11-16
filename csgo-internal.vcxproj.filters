@@ -1,53 +1,177 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="include\sdk\interfaces\IClientRenderable.h" />
-    <ClCompile Include="src\dllmain.cpp" />
-    <ClCompile Include="src\features\bhop.cpp" />
-    <ClCompile Include="src\features\glow.cpp" />
-    <ClCompile Include="src\features\chams.cpp" />
-    <ClCompile Include="src\features\skinchanger.cpp" />
-    <ClCompile Include="src\hooks.cpp" />
-    <ClCompile Include="src\sdk\interfaces.cpp" />
-    <ClCompile Include="src\sdk\netvars.cpp" />
-    <ClCompile Include="src\utils.cpp" />
-    <ClCompile Include="src\vmthook.cpp" />
-    <ClCompile Include="src\gui\gui.cpp" />
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\sdk">
+      <UniqueIdentifier>{c0f7ae6e-e4c5-4d77-bd85-f5dc90b9d6b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sdk">
+      <UniqueIdentifier>{65e040a6-f78d-4948-81b8-c65e430ae74c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sdk\interfaces">
+      <UniqueIdentifier>{b15da853-a391-4e7d-ba41-6f328cf02ad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sdk\classes">
+      <UniqueIdentifier>{bfd4045d-ad7f-4032-a8b6-f06d36814f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\features">
+      <UniqueIdentifier>{46da200c-e96b-4afc-82c0-7d124c5b0237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\features">
+      <UniqueIdentifier>{71be011b-d91a-44ad-9f9c-805753bcbef4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\features\bhop.h" />
-    <ClInclude Include="include\features\chams.h" />
-    <ClInclude Include="include\features\skinchanger.h" />
-    <ClInclude Include="include\features\glow.h" />
-    <ClInclude Include="include\hooks.h" />
-    <ClInclude Include="include\sdk\classes\CGlowObjectManager.h" />
-    <ClInclude Include="include\sdk\classes\CUserCmd.h" />
-    <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h" />
-    <ClInclude Include="include\sdk\classes\C_BaseEntity.h" />
-    <ClInclude Include="include\sdk\classes\C_BasePlayer.h" />
-    <ClInclude Include="include\sdk\classes\C_PredictedViewModel.h" />
-    <ClInclude Include="include\sdk\classes\QAngle.h" />
-    <ClInclude Include="include\sdk\classes\Vector.h" />
-    <ClInclude Include="include\sdk\interfaces\IAppSystem.h" />
-    <ClInclude Include="include\sdk\interfaces\IMaterial.h" />
-    <ClInclude Include="include\sdk\interfaces\IMaterialSystem.h" />
-    <ClInclude Include="include\sdk\interfaces\IStudioRender.h" />
-    <ClInclude Include="include\sdk\interfaces\IVModelInfo.h" />
-    <ClInclude Include="include\sdk\interfaces\IVModelRender.h" />
-    <ClInclude Include="include\sdk\netvars.h" />
-    <ClInclude Include="include\sdk\interfaces.h" />
-    <ClInclude Include="include\sdk\common.h" />
-    <ClInclude Include="include\sdk\interfaces\IBaseClientDLL.h" />
-    <ClInclude Include="include\sdk\interfaces\IClientEntity.h" />
-    <ClInclude Include="include\sdk\interfaces\IClientEntityList.h" />
-    <ClInclude Include="include\sdk\interfaces\IClientMode.h" />
-    <ClInclude Include="include\sdk\interfaces\IClientNetworkable.h" />
-    <ClInclude Include="include\sdk\interfaces\IClientThinkable.h" />
-    <ClInclude Include="include\sdk\interfaces\IClientUnknown.h" />
-    <ClInclude Include="include\sdk\interfaces\IHandleEntity.h" />
-    <ClInclude Include="include\utils.h" />
-    <ClInclude Include="include\vmthook.h" />
-    <ClInclude Include="include\gui\gui.h" />
-    <ClInclude Include="include\gui\guiControl.h" />
+    <ClInclude Include="include\sdk\interfaces.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IBaseClientDLL.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vmthook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientMode.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\hooks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientEntity.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientUnknown.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IHandleEntity.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientNetworkable.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientThinkable.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IClientEntityList.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\CUserCmd.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\common.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\QAngle.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\Vector.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\features\bhop.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\C_BaseEntity.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\C_BasePlayer.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\netvars.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="include\features\chams.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IVModelRender.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IStudioRender.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IAppSystem.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IMaterialSystem.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IMaterial.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\interfaces\IVModelInfo.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\guiControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\gui.h">
+      <Filter>Header Files</Filter>
+	</ClInclude>
+    <ClInclude Include="include\features\skinchanger.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\C_PredictedViewModel.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\CGlowObjectManager.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\features\glow.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdk\interfaces.cpp">
+      <Filter>Source Files\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vmthook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hooks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\sdk\interfaces\IClientRenderable.h">
+      <Filter>Header Files\sdk\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\bhop.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdk\netvars.cpp">
+      <Filter>Source Files\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\chams.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\gui.cpp">
+      <Filter>Source Files</Filter>
+	</ClCompile>
+    <ClCompile Include="src\features\skinchanger.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\glow.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
