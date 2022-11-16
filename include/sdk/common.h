@@ -42,3 +42,8 @@ public:
 };
 template<class T, int nAlignment = 16>
 class CUtlMemoryAligned;
+
+struct matrix3x4a_t
+{
+    float m_flMatVal[3][4];
+};

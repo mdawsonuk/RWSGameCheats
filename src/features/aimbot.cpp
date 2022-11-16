@@ -7,7 +7,10 @@
 #include<cmath>
 #include <iostream>
 
-#define HEAD_BONE_ID ((DWORD) 8)
+
+
+#define HEAD_BONE_ID 8
+#define DEGREES_IN_RADIAN 57.295779513082f
 
 namespace AimBot
 {
@@ -41,25 +44,31 @@ namespace AimBot
 			angle.y += 360.f;
 	}
 
-	QAngle AimTo(Vector target) {
-		
-		auto localPlayer = *g_LocalPlayer;
+	Vector GetBonePosition(C_BaseEntity* pEntity, int boneId)
+	{
+		matrix3x4a_t mMatrixArray[128];
+		pEntity->SetupBones(mMatrixArray, 128, 256, 0);
+		matrix3x4a_t mHitboxMatrix = mMatrixArray[boneId];
+		return Vector(mHitboxMatrix.m_flMatVal[0][3], mHitboxMatrix.m_flMatVal[1][3], mHitboxMatrix.m_flMatVal[2][3]);
+	}
 
-		auto& playerPos = localPlayer->m_vecOrigin();
+	QAngle AimTo(Vector target) {
+
+		Vector playerHead = GetBonePosition(*g_LocalPlayer, HEAD_BONE_ID);
 
 		Vector posDiff = Vector(
-			playerPos.x - target.x,
-			playerPos.y - target.y,
-			playerPos.z - target.z 
+			playerHead.x - target.x,
+			playerHead.y - target.y,
+			playerHead.z - target.z
 		);
 
 		// use radian trig to find new angle
 		QAngle newAngle = QAngle(
-			(float)(asinf(posDiff.z / sqrt(pow(posDiff.x, 2) + pow(posDiff.y, 2) + pow(posDiff.z, 2))) * 57.295779513082f),
-			(float)(atanf(posDiff.y / posDiff.x) * 57.295779513082f),
+			asinf(posDiff.z / sqrt(pow(posDiff.x, 2) + pow(posDiff.y, 2) + pow(posDiff.z, 2))) * DEGREES_IN_RADIAN,
+			atanf(posDiff.y / posDiff.x) * DEGREES_IN_RADIAN,
 			0.0f
 		);
-		
+
 		if (posDiff.x >= 0.f) {
 			newAngle.y += 180.0f;
 		}
@@ -71,19 +80,6 @@ namespace AimBot
 		return newAngle;
 	}
 
-	Vector GetBonePosition(C_BaseEntity* pEntity)
-	{
-		Vector vecBone;
-		vecBone.Init();
-
-		//matrix3x4a_t mMatrixArray[128];
-		//pEntity->SetupBones(mMatrixArray, 128, 256, 0);
-		//matrix3x4_t mHitboxMatrix = mMatrixArray[8];
-		//vecBone = Vector(mHitboxMatrix.m_flMatVal[0][3], mHitboxMatrix.m_flMatVal[1][3], mHitboxMatrix.m_flMatVal[2][3]);
-
-		return vecBone;
-	}
-
 	void OnCreateMove(CUserCmd* cmd)
 	{
 		// when we shoot
@@ -91,12 +87,11 @@ namespace AimBot
 		{
 			auto localPlayer = *g_LocalPlayer;
 
-
 			auto& playerPos = localPlayer->m_vecOrigin();
 
 			auto& playerTeamNum = localPlayer->m_iTeamNum();
 
-			float closest_diff = 999999999.f;
+			float closestDiff = 999999999.f;
 
 			QAngle nearestEntityAim;
 			bool botFound = FALSE;
@@ -105,17 +100,12 @@ namespace AimBot
 
 			// find the entity shortest distance away
 			for (int i = 0; i <= highestIndex; i++) {
-				auto entity = (C_BasePlayer*)g_EntityList->GetClientEntity(i);
 
-				if (entity == NULL) {
+				if (g_EntityList->GetClientEntity(i) == NULL) {
 					continue;
 				}
 
-				//-------------------------turn into head position
-
-
-				Vector entityPos = entity->GetAbsOrigin();
-
+				C_BaseEntity* entity = (C_BaseEntity*) g_EntityList->GetClientEntity(i);
 
 				// if it's on the same team as player don't bother
 				int teamNum = entity->m_iTeamNum();
@@ -124,13 +114,14 @@ namespace AimBot
 				}
 
 				// if it's dead then don't bother
-				if (entity->IsAlive()) {
+				if (!((C_BasePlayer*) entity)->IsAlive()) {
 					continue;
 				}
 
 				// select entity closest to the view angle of the player
+				Vector entityHead = GetBonePosition(entity, HEAD_BONE_ID);
 				QAngle viewAngles = cmd->viewangles;
-				QAngle newViewAngles = AimTo(entityPos);
+				QAngle newViewAngles = AimTo(entityHead);
 
 
 				float diff = sqrt(
@@ -138,8 +129,8 @@ namespace AimBot
 					pow(newViewAngles.y - viewAngles.y, 2)
 				);
 
-				if (diff < closest_diff) {
-					closest_diff = diff;
+				if (diff < closestDiff) {
+					closestDiff = diff;
 					nearestEntityAim = newViewAngles;
 					botFound = TRUE;
 				}
