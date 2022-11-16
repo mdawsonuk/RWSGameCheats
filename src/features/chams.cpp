@@ -3,12 +3,8 @@
 #include "hooks.h"
 #include "sdk/interfaces/IMaterial.h"
 #include "sdk/classes/C_BasePlayer.h"
-<<<<<<< HEAD
-#include "sdk/classes/C_BaseCombatWeapon.h"
-#include "../../include/gui/guiControl.h"
-=======
 #include "sdk/classes/C_PredictedViewModel.h"
->>>>>>> 029a1266c5754c7248dfd7697cb848100466a23d
+#include "../../include/gui/guiControl.h"
 
 namespace Chams
 {

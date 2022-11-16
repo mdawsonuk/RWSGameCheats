@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include <string>
+#include <vector>
 #include "../../include/gui/gui.h"
 #include "../gui/guiControl.h"
 
@@ -8,24 +9,30 @@ using namespace std;
 
 #define SWITCH_BHOP_BUTTON 1
 #define SWITCH_CHAMS_BUTTON 2
+#define SWITCH_GLOW_BUTTON 3
 
 namespace Gui 
 {
-    HWND bhopMsg, chamsMsg, titleMsg, instrMsg, btn1, btn2;
+    vector<HWND> buttons;
+    vector<HWND> messages;
+    vector<LPCWSTR> cheats{ L"bhop", L"chams", L"glow" };
+
+    HWND title, instructions;
     HFONT defaultFont, titleFont;
 
-    LPCWSTR cheatOn = L" cheat is turned on!";
-    LPCWSTR cheatOff = L" cheat is turned off!";
+    LPCWSTR cheatOn = L" cheat is turned on";
+    LPCWSTR cheatOff = L" cheat is turned off";
 
     void CreateAndSetFonts() {
         defaultFont = CreateFont(18, 0, 0, 0, 500, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Tahoma"));
         titleFont = CreateFont(40, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Tahoma"));
-        SendMessage(titleMsg, WM_SETFONT, (LPARAM)titleFont, TRUE);
-        SendMessage(instrMsg, WM_SETFONT, (LPARAM)defaultFont, TRUE);
-        SendMessage(bhopMsg, WM_SETFONT, (LPARAM)defaultFont, TRUE);
-        SendMessage(chamsMsg, WM_SETFONT, (LPARAM)defaultFont, TRUE);
-        SendMessage(btn1, WM_SETFONT, (LPARAM)defaultFont, TRUE);
-        SendMessage(btn2, WM_SETFONT, (LPARAM)defaultFont, TRUE);
+        SendMessage(title, WM_SETFONT, (LPARAM)titleFont, TRUE);
+        SendMessage(instructions, WM_SETFONT, (LPARAM)defaultFont, TRUE);
+
+        for (size_t i = 0; i < messages.size(); i++) {
+            SendMessage(messages[i], WM_SETFONT, (LPARAM)defaultFont, TRUE);
+            SendMessage(buttons[i], WM_SETFONT, (LPARAM)defaultFont, TRUE);
+        }
     }
 
     void SwitchCheats(bool &cheatFlag, LPCWSTR cheat, HWND hWndMsg) {
@@ -43,12 +50,18 @@ namespace Gui
     }
 
     void AddSwitchControls(HWND hWnd) {
-        titleMsg = CreateWindowW(L"Static", L"HackAndGO", WS_VISIBLE | WS_CHILD, 20, 20, 350, 70, hWnd, NULL, NULL, NULL);
-        instrMsg = CreateWindowW(L"Static", L"Use the below switches to turn the cheats on and off", WS_VISIBLE | WS_CHILD, 70, 90, 350, 70, hWnd, NULL, NULL, NULL);
-        btn1 = CreateWindowW(L"Button", L"Switch", WS_VISIBLE | WS_CHILD | WS_BORDER, 100, 130, 100, 40, hWnd, (HMENU)SWITCH_BHOP_BUTTON, NULL, NULL);
-        bhopMsg = CreateWindowW(L"Edit", L"bhop cheat is turned off", WS_VISIBLE | WS_CHILD | WS_BORDER, 250, 130, 170, 40, hWnd, NULL, NULL, NULL);
-        btn2 = CreateWindowW(L"Button", L"Switch", WS_VISIBLE | WS_CHILD | WS_BORDER, 100, 180, 100, 40, hWnd, (HMENU)SWITCH_CHAMS_BUTTON, NULL, NULL);
-        chamsMsg = CreateWindowW(L"Edit", L"chams cheat is turned off", WS_VISIBLE | WS_CHILD | WS_BORDER, 250, 180, 182, 40, hWnd, NULL, NULL, NULL);
+        title = CreateWindowW(L"Static", L"HackAndGO", WS_VISIBLE | WS_CHILD, 20, 20, 350, 70, hWnd, NULL, NULL, NULL);
+        instructions = CreateWindowW(L"Static", L"Use the below switches to turn the cheats on and off", WS_VISIBLE | WS_CHILD, 70, 90, 350, 70, hWnd, NULL, NULL, NULL);
+
+        int y = 130;
+
+        for (size_t i = 0; i < cheats.size(); i++) {
+            wstring temp = wstring(cheats[i]) + cheatOff;
+            messages.push_back(CreateWindowW(L"Edit", temp.c_str(), WS_VISIBLE | WS_CHILD | WS_BORDER, 250, y, 182, 40, hWnd, NULL, NULL, NULL));
+            buttons.push_back(CreateWindowW(L"Button", L"Switch", WS_VISIBLE | WS_CHILD | WS_BORDER, 100, y, 100, 40, hWnd, (HMENU)(i + 1), NULL, NULL));
+
+            y += 50;
+        }
     }
 
     LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
@@ -58,10 +71,13 @@ namespace Gui
             switch (wp)
             {
             case SWITCH_BHOP_BUTTON:
-                SwitchCheats(isBhop, L"Bhop", bhopMsg);
+                SwitchCheats(isBhop, cheats[0], messages[0]);
                 break;
             case SWITCH_CHAMS_BUTTON:
-                SwitchCheats(isChams, L"Chams", chamsMsg);
+                SwitchCheats(isChams, cheats[1], messages[1]);
+                break;
+            case SWITCH_GLOW_BUTTON:
+                SwitchCheats(isGlow, cheats[2], messages[2]);
                 break;
             }
             break;

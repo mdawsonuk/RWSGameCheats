@@ -149,13 +149,10 @@
   <ItemGroup>
     <ClInclude Include="include\features\bhop.h" />
     <ClInclude Include="include\features\chams.h" />
-<<<<<<< HEAD
-    <ClInclude Include="include\gui\gui.h" />
-    <ClInclude Include="include\gui\guiControl.h" />
-=======
     <ClInclude Include="include\features\skinchanger.h" />
     <ClInclude Include="include\features\glow.h" />
->>>>>>> 029a1266c5754c7248dfd7697cb848100466a23d
+    <ClInclude Include="include\gui\gui.h" />
+    <ClInclude Include="include\gui\guiControl.h" />
     <ClInclude Include="include\hooks.h" />
     <ClInclude Include="include\sdk\classes\CGlowObjectManager.h" />
     <ClInclude Include="include\sdk\classes\CUserCmd.h" />
@@ -191,11 +188,8 @@
     <ClCompile Include="src\features\bhop.cpp" />
     <ClCompile Include="src\features\glow.cpp" />
     <ClCompile Include="src\features\chams.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="src\gui\gui.cpp" />
-=======
     <ClCompile Include="src\features\skinchanger.cpp" />
->>>>>>> 029a1266c5754c7248dfd7697cb848100466a23d
+    <ClCompile Include="src\gui\gui.cpp" />
     <ClCompile Include="src\hooks.cpp" />
     <ClCompile Include="src\sdk\interfaces.cpp" />
     <ClCompile Include="src\sdk\netvars.cpp" />

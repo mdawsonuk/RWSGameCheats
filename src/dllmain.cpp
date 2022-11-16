@@ -9,6 +9,9 @@
 
 #include "features/skinchanger.h"
 
+bool isBhop = false;
+bool isChams = false;
+bool isGlow = false;
 bool attached = false;
 FILE* conout = nullptr;
 FILE* conin = nullptr;
