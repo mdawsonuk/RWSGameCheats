@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "../../include/gui/gui.h"
-#include "../gui/guiControl.h"
+#include "../../include/gui/guiControl.h"
 
 using namespace std;
 
