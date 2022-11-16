@@ -143,8 +143,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="aimbot.h" />
+    <ClInclude Include="include\features\aimbot.h" />
     <ClInclude Include="include\features\bhop.h" />
+    <ClInclude Include="include\features\noflash.h" />
+    <ClInclude Include="include\features\norecoil.h" />
     <ClInclude Include="include\hooks.h" />
     <ClInclude Include="include\sdk\classes\CUserCmd.h" />
     <ClInclude Include="include\sdk\classes\C_BaseEntity.h" />
@@ -164,16 +166,14 @@
     <ClInclude Include="include\sdk\interfaces\IHandleEntity.h" />
     <ClInclude Include="include\utils.h" />
     <ClInclude Include="include\vmthook.h" />
-    <ClInclude Include="noflash.h" />
-    <ClInclude Include="norecoil.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Desktop\noflash.cpp" />
-    <ClCompile Include="aimbot.cpp" />
     <ClCompile Include="include\sdk\interfaces\IClientRenderable.h" />
     <ClCompile Include="norecoil.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\features\aimbot.cpp" />
     <ClCompile Include="src\features\bhop.cpp" />
+    <ClCompile Include="src\features\norecoil.cpp" />
     <ClCompile Include="src\hooks.cpp" />
     <ClCompile Include="src\sdk\interfaces.cpp" />
     <ClCompile Include="src\sdk\netvars.cpp" />

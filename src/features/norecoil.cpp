@@ -1,4 +1,4 @@
-#include "../norecoil.h"
+#include "features/norecoil.h"
 
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"

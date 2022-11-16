@@ -93,13 +93,13 @@
     <ClInclude Include="include\sdk\netvars.h">
       <Filter>Header Files\sdk</Filter>
     </ClInclude>
-    <ClInclude Include="aimbot.h">
+    <ClInclude Include="include\features\aimbot.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
-    <ClInclude Include="noflash.h">
+    <ClInclude Include="include\features\noflash.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
-    <ClInclude Include="norecoil.h">
+    <ClInclude Include="include\features\norecoil.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
   </ItemGroup>
@@ -128,13 +128,10 @@
     <ClCompile Include="src\sdk\netvars.cpp">
       <Filter>Source Files\sdk</Filter>
     </ClCompile>
-    <ClCompile Include="aimbot.cpp">
+    <ClCompile Include="src\features\norecoil.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Desktop\noflash.cpp">
-      <Filter>Source Files\features</Filter>
-    </ClCompile>
-    <ClCompile Include="norecoil.cpp">
+    <ClCompile Include="src\features\aimbot.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>
