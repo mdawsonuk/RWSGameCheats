@@ -7,9 +7,6 @@
 #include "gui/guiControl.h"
 #include "gui/gui.h"
 
-// TODO: Use hooks instead of injection initialisation
-#include "features\difficulty.h"
-
 #include "features/skinchanger.h"
 
 bool isBhop = false;
@@ -75,8 +72,6 @@ bool ProcessAttach()
         ProcessDetach();
         return false;
     }
-
-    Difficulty::OnRoundStart();
 
     // Hooks must be set up last
     success = Hooks::SetupHooks();

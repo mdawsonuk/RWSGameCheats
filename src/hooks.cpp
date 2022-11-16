@@ -7,6 +7,7 @@
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
 
+#include "features/adaptivedifficulty.h"
 #include "features/bhop.h"
 #include "features/chams.h"
 #include "features/skinchanger.h"
@@ -29,6 +30,9 @@ namespace Hooks
 
 		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
+
+		// Use this to check for changes in K/D
+		AdaptiveDifficulty::AdaptDifficulty();
 
 		return res;
 	}

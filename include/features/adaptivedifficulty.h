@@ -12,7 +12,7 @@
 
 #define AIMBOT = -10
 
-namespace Difficulty
+namespace AdaptiveDifficulty
 {
-	void OnRoundStart();
+	void AdaptDifficulty();
 }
