@@ -123,6 +123,12 @@
     <ClInclude Include="include\sdk\classes\C_PredictedViewModel.h">
       <Filter>Header Files\sdk\classes</Filter>
     </ClInclude>
+    <ClInclude Include="include\sdk\classes\CGlowObjectManager.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\features\glow.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -153,6 +159,9 @@
       <Filter>Source Files\features</Filter>
     </ClCompile>
     <ClCompile Include="src\features\skinchanger.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\glow.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>
