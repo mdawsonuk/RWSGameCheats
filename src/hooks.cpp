@@ -1,16 +1,14 @@
 #include "hooks.h"
 
 #include "sdk/interfaces.h"
+#include "sdk/classes/C_BasePlayer.h"
+#include "sdk/classes/Vector.h"
+
+#include "features/aimbot.h"
+#include "features/norecoil.h"
 #include "features/bhop.h"
 #include "features/glow.h"
 #include "features/noflash.h"
-
-#include "sdk/classes/C_BasePlayer.h"
-#include "sdk/classes/Vector.h"
-#include "features/aimbot.h"
-#include "features/norecoil.h"
-#include "features/noflash.h"
-
 #include "features/bhop.h"
 #include "features/chams.h"
 #include "features/skinchanger.h"

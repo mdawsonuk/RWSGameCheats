@@ -6,12 +6,8 @@
 
 #include<cmath>
 #include <iostream>
-using namespace std;
-
-
 
 #define HEAD_BONE_ID ((DWORD) 8)
-
 
 namespace AimBot
 {
@@ -51,20 +47,18 @@ namespace AimBot
 
 		auto& playerPos = localPlayer->m_vecOrigin();
 
-		Vector posDiff = *(new Vector(
+		Vector posDiff = Vector(
 			playerPos.x - target.x,
 			playerPos.y - target.y,
 			playerPos.z - target.z 
-		));
-
-
+		);
 
 		// use radian trig to find new angle
-		QAngle newAngle = *(new QAngle(
+		QAngle newAngle = QAngle(
 			(float)(asinf(posDiff.z / sqrt(pow(posDiff.x, 2) + pow(posDiff.y, 2) + pow(posDiff.z, 2))) * 57.295779513082f),
 			(float)(atanf(posDiff.y / posDiff.x) * 57.295779513082f),
 			0.0f
-		));
+		);
 		
 		if (posDiff.x >= 0.f) {
 			newAngle.y += 180.0f;
@@ -102,19 +96,16 @@ namespace AimBot
 
 			auto& playerTeamNum = localPlayer->m_iTeamNum();
 
-			IClientEntityList* entityList = g_EntityList;
-
 			float closest_diff = 999999999.f;
 
 			QAngle nearestEntityAim;
-			QAngle* nearestEntityAimPointer = &nearestEntityAim;
 			bool botFound = FALSE;
 
-			auto highestIndex = entityList->GetHighestEntityIndex();
+			auto highestIndex = g_EntityList->GetHighestEntityIndex();
 
 			// find the entity shortest distance away
 			for (int i = 0; i <= highestIndex; i++) {
-				auto entity = entityList->GetClientEntity(i);
+				auto entity = (C_BasePlayer*)g_EntityList->GetClientEntity(i);
 
 				if (entity == NULL) {
 					continue;
@@ -127,14 +118,13 @@ namespace AimBot
 
 
 				// if it's on the same team as player don't bother
-				int teamNum = ((C_BaseEntity*)(entity))->m_iTeamNum();
+				int teamNum = entity->m_iTeamNum();
 				if (playerTeamNum == teamNum || teamNum == 0) {
 					continue;
 				}
 
 				// if it's dead then don't bother
-				int health = ((C_BasePlayer*)(entity))->m_iHealth();
-				if (health <= 0 || health > 100) {
+				if (entity->IsAlive()) {
 					continue;
 				}
 
@@ -160,7 +150,7 @@ namespace AimBot
 			}
 
 			// set player view angle to aim to nearest found
-			cmd->viewangles = *nearestEntityAimPointer;
+			cmd->viewangles = nearestEntityAim;
 
 		}
 	}

@@ -6,9 +6,6 @@
 
 #include<cmath>
 #include <iostream>
-using namespace std;
-
-
 
 namespace NoRecoil
 {
@@ -42,11 +39,14 @@ namespace NoRecoil
 			int shotCount = localPlayer->m_iShotsFired();
 
 			if (shotCount >= 1) {
-				cout << shotCount << "\n";
+#if DEBUG
+				printf_s("Shot count: %d\n", shotCount);
+#endif
 				auto& playerPunchAngle = localPlayer->m_aimPunchAngle();
-				cout << "Punch x: " << playerPunchAngle.x << ". Punch y: " << playerPunchAngle.y << "\n";
+#if DEBUG
+				printf_s("Punch X: %f | Punch Y: %f\n", playerPunchAngle.x, playerPunchAngle.y);
+#endif
 				QAngle viewAngles = cmd->viewangles;
-
 
 				Vector rcsAngle{};
 				rcsAngle.x = viewAngles.x + (oldPunch.x - playerPunchAngle.x * 2.f);
