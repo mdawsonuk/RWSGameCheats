@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common.h"
+#include "sdk/common.h"
 
 typedef unsigned short ClientShadowHandle_t;
 typedef unsigned short ClientRenderHandle_t;

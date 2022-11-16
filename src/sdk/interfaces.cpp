@@ -16,6 +16,7 @@ IVEngineClient* g_EngineClient = nullptr;
 C_PlayerResource** g_PlayerResource = nullptr;
 C_CS_PlayerResource** g_CSPlayerResource = nullptr;
 C_BasePlayer** g_LocalPlayer = nullptr;
+CGlowObjectManager* g_GlowManager = nullptr;
 
 #define GET_FACTORY(var, moduleName) CreateInterfaceFn var = GetCreateInterfaceFn(moduleName); if (!var) return false;
 
@@ -99,6 +100,7 @@ namespace Interfaces
 		//     This uses dword_13228000 as its reference to the interface, which can be used to gen a sig
 		g_PlayerResource = *reinterpret_cast<C_PlayerResource***>(Utils::SigScan("client.dll", "\x8B\x35\x00\x00\x00\x00\x85\xF6\x0F\x84\x00\x00\x00\x00\x81", "xx????xxxx????x") + 2);
 		DUMP_INTERFACE(g_PlayerResource);
+		g_GlowManager = *reinterpret_cast<CGlowObjectManager**>(Utils::SigScan("client.dll", "\x0F\x11\x05\x00\x00\x00\x00\x83\xC8\x01",  "xxx????xxx") + 3);
 
 		g_CSPlayerResource = *reinterpret_cast<C_CS_PlayerResource***>(Utils::SigScan("client.dll", "\x8B\x3D\x00\x00\x00\x00\x85\xFF\x0F\x84\x00\x00\x00\x00\x81\xC7", "xx????xxxx????xx") + 2);
 		DUMP_INTERFACE(g_CSPlayerResource);

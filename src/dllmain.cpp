@@ -4,10 +4,17 @@
 #include "sdk/interfaces.h"
 #include "sdk/netvars.h"
 #include "hooks.h"
+#include "gui/guiControl.h"
+#include "gui/gui.h"
 
 // TODO: Use hooks instead of injection initialisation
 #include "features\difficulty.h"
 
+#include "features/skinchanger.h"
+
+bool isBhop = false;
+bool isChams = false;
+bool isGlow = false;
 bool attached = false;
 FILE* conout = nullptr;
 FILE* conin = nullptr;
@@ -22,6 +29,7 @@ void ProcessDetach()
 {
     // Disable all hooks
     Hooks::CleanupHooks();
+    Netvars::UnhookAllRecvProxies();
 
     // TODO: Any other necessary clean up
 
@@ -78,11 +86,21 @@ bool ProcessAttach()
         return false;
     }
 
+    // Uncomment this to get all current model indices
+#ifdef _DEBUG
+    //SkinChanger::DumpModelIndices();
+#endif
+    // Load skin change definitions
+    SkinChanger::LoadSkinChanges();
+
     attached = true;
     return true;
 }
 
-
+int WINAPI myThread(HINSTANCE hInst, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
+    Gui::guiWindow(hInst, hPrevInstance, pCmdLine, nCmdShow);
+    return 0;
+}
 
 // DllEntry
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
@@ -97,7 +115,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
         {
             return FALSE;
         }
-
+        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)myThread, hinstDLL, 0, nullptr));
         // We aren't starting a thread here since everything is based on hooks
         return ProcessAttach();
         

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "C_BaseEntity.h"
+#include "C_BaseCombatWeapon.h"
 #include "sdk\netvars.h"
 
 enum MoveType_t
@@ -30,6 +31,8 @@ enum MoveType_t
 #define LIFE_RESPAWNABLE		3
 #define LIFE_DISCARDBODY		4
 
+#define MAX_WEAPONS 64
+
 // There is actually a long inheritance chain between C_BasePlayer and C_BaseEntity
 // but for what we need to do, this is enough (I also don't think we care about the custom materials...)
 
@@ -43,9 +46,16 @@ public:
 	NETVAR(m_iMoveState, MoveType_t, "DT_CSPlayer", "m_iMoveState");
 	NETVAR(m_iHealth, int, "DT_CSPlayer", "m_iHealth");
 
+	NETVAR(m_hActiveWeapon, CBaseHandle, "DT_BaseCombatCharacter", "m_hActiveWeapon");
+	NETVAR_ARRAY(m_hMyWeapons, CBaseHandle, "DT_BaseCombatCharacter", "m_hMyWeapons");
 
 	bool IsAlive()
 	{
 		return m_lifeState() == LIFE_ALIVE;
+	}
+
+	C_BaseCombatWeapon* GetActiveWeapon()
+	{
+		return reinterpret_cast<C_BaseCombatWeapon*>(g_EntityList->GetClientEntityFromHandle(m_hActiveWeapon()));
 	}
 };

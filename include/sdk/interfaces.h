@@ -12,6 +12,7 @@
 #include "interfaces/IVEngineClient.h"
 
 // This feels wrong
+#include "classes/CGlowObjectManager.h"
 #include "classes/C_PlayerResource.h"
 #include "classes/C_CS_PlayerResource.h"
 
@@ -28,6 +29,7 @@ extern C_CS_PlayerResource** g_CSPlayerResource;
 
 extern C_BasePlayer** g_LocalPlayer;
 
+extern CGlowObjectManager* g_GlowManager;
 
 namespace Interfaces
 {
