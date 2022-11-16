@@ -6,13 +6,20 @@
 #include "interfaces/IBaseClientDLL.h"
 #include "interfaces/IClientMode.h"
 #include "interfaces/IClientEntityList.h"
-
+#include "interfaces/IVModelRender.h"
+#include "interfaces/IVModelInfo.h"
+#include "classes/CGlowObjectManager.h"
 
 extern IBaseClientDLL* g_ClientDLL;
 extern IClientMode* g_ClientMode;
 extern IClientEntityList* g_EntityList;
+extern IVModelRender* g_ModelRender;
+extern IMaterialSystem* g_MaterialSystem;
+extern IVModelInfoClient* g_ModelInfoClient;
 
 extern C_BasePlayer** g_LocalPlayer;
+
+extern CGlowObjectManager* g_GlowManager;
 
 namespace Interfaces
 {

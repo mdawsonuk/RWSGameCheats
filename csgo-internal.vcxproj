@@ -89,6 +89,8 @@
       <PreprocessorDefinitions>WIN32;CSTRIKE15;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeTypeInfo>
+      </RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -104,6 +106,8 @@
       <PreprocessorDefinitions>WIN32;CSTRIKE15;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeTypeInfo>
+      </RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,12 +151,24 @@
     <ClInclude Include="include\features\bhop.h" />
     <ClInclude Include="include\features\noflash.h" />
     <ClInclude Include="include\features\norecoil.h" />
+    <ClInclude Include="include\features\chams.h" />
+    <ClInclude Include="include\features\skinchanger.h" />
+    <ClInclude Include="include\features\glow.h" />
     <ClInclude Include="include\hooks.h" />
+    <ClInclude Include="include\sdk\classes\CGlowObjectManager.h" />
     <ClInclude Include="include\sdk\classes\CUserCmd.h" />
+    <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h" />
     <ClInclude Include="include\sdk\classes\C_BaseEntity.h" />
     <ClInclude Include="include\sdk\classes\C_BasePlayer.h" />
+    <ClInclude Include="include\sdk\classes\C_PredictedViewModel.h" />
     <ClInclude Include="include\sdk\classes\QAngle.h" />
     <ClInclude Include="include\sdk\classes\Vector.h" />
+    <ClInclude Include="include\sdk\interfaces\IAppSystem.h" />
+    <ClInclude Include="include\sdk\interfaces\IMaterial.h" />
+    <ClInclude Include="include\sdk\interfaces\IMaterialSystem.h" />
+    <ClInclude Include="include\sdk\interfaces\IStudioRender.h" />
+    <ClInclude Include="include\sdk\interfaces\IVModelInfo.h" />
+    <ClInclude Include="include\sdk\interfaces\IVModelRender.h" />
     <ClInclude Include="include\sdk\netvars.h" />
     <ClInclude Include="include\sdk\interfaces.h" />
     <ClInclude Include="include\sdk\common.h" />
@@ -172,6 +188,9 @@
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\features\aimbot.cpp" />
     <ClCompile Include="src\features\bhop.cpp" />
+    <ClCompile Include="src\features\glow.cpp" />
+    <ClCompile Include="src\features\chams.cpp" />
+    <ClCompile Include="src\features\skinchanger.cpp" />
     <ClCompile Include="src\features\noflash.cpp" />
     <ClCompile Include="src\features\norecoil.cpp" />
     <ClCompile Include="src\hooks.cpp" />

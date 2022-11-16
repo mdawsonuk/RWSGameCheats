@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common.h"
+#include "sdk/common.h"
 
 class CGlobalVarsBase;
 class ClientClass;
@@ -21,14 +21,6 @@ class IConVar;
 class CSVCMsg_HltvReplay;
 class CEngineGotvSyncPacket;
 
-// TODO: Do we ever need the actual definitions of these?
-template<class T, class I = int>
-class CUtlMemory;
-template<class T, class A = CUtlMemory<T>>
-class CUtlVector;
-template<class T, int nAlignment = 16>
-class CUtlMemoryAligned;
-
 struct ScreenFade_t;
 struct vrect_t;
 struct datamap_t;
@@ -42,7 +34,27 @@ struct PublishedFileId_t;
 struct CDemoPlaybackParameters_t;
 
 enum ButtonCode_t : int;
-enum ClientFrameStage_t : int;
+enum ClientFrameStage_t : int
+{
+	FRAME_UNDEFINED = -1,			// (haven't run any frames yet)
+	FRAME_START,
+
+	// A network packet is being recieved
+	FRAME_NET_UPDATE_START,
+	// Data has been received and we're going to start calling PostDataUpdate
+	FRAME_NET_UPDATE_POSTDATAUPDATE_START,
+	// Data has been received and we've called PostDataUpdate on all data recipients
+	FRAME_NET_UPDATE_POSTDATAUPDATE_END,
+	// We've received all packets, we can now do interpolation, prediction, etc..
+	FRAME_NET_UPDATE_END,
+
+	// We're about to start rendering the scene
+	FRAME_RENDER_START,
+	// We've finished rendering the scene.
+	FRAME_RENDER_END,
+
+	FRAME_NET_FULL_FRAME_UPDATE_ON_REMOVE
+};
 
 namespace vgui
 {

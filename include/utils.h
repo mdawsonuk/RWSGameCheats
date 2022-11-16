@@ -89,6 +89,32 @@ namespace Utils
 				ret
 			}
 		}
+
+		template<typename T = void, typename... Args>
+		__declspec(naked) T __fastcall FastCall(void* ecx, void* edx, void* functionToCall, SavedVals* savedVals, void* gadgetAddr, Args... args)
+		{
+			// This is the same as spoofing stdcall except we can't use ecx/edx before "calling" the function
+			__asm
+			{
+				mov eax, [esp + 8]			// move pointer to saved vals into eax
+				mov[eax + 8], ebx			// store the value of ebx in savedVals->savedEbx
+				lea ebx, gadgetReturn		// load the address of where we want the gadget to jump to
+				mov[eax], ebx				// store the loaded address into savedVals->gadgetRetAddr
+				pop dword ptr[eax + 4]		// store the current return address in savedVals->savedRetAddr	
+
+				mov ebx, eax				// move the saved vals pointer into ebx (the gadget is 'jmp, [ebx]' so it will jump to savedVals->gadgetRetAddr)
+				ret 0x4						// return to the function we want to call, removing the SavedVals pointer from the stack
+				//		this means that the return address from functionToCall will be the address of our gadget
+
+			gadgetReturn:
+				push dword ptr[ebx + 4]	// restore the original return address
+				push eax				// push the return value onto the stack
+				mov eax, ebx			// move the saved vals pointer into eax
+				mov ebx, [eax + 8]		// restore the saved ebx value
+				pop eax					// restore the saved return value
+				ret
+			}
+		}
 	}
 
 	template<typename T = void, typename... Args>
@@ -97,7 +123,18 @@ namespace Utils
 		Spoof::SavedVals savedVals = { 0 };
 		return Spoof::StdCall<T>(functionToCall, &savedVals, gadgetAddr, args...);
 	}
-	
-	// TODO: spoof __thiscall and __fastcall
-	//		__thiscall with edx set to 0 is the same as __fastcall
+
+	template<typename T = void, typename... Args>
+	T SpoofFastCall(void* functionToCall, void* gadgetAddr, void* ecx, void* edx, Args... args)
+	{
+		Spoof::SavedVals savedVals = { 0 };
+		return Spoof::FastCall<T>(ecx, edx, functionToCall, &savedVals, gadgetAddr, args...);
+	}
+
+	// __thiscall is just __fastcall that doesn't use edx
+	template<typename T = void, typename... Args>
+	T SpoofThisCall(void* functionToCall, void* gadgetAddr, void* ecx, Args... args)
+	{
+		return SpoofFastCall<T>(functionToCall, gadgetAddr, ecx, nullptr, args...);
+	}
 }

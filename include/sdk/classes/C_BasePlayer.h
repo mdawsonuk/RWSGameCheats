@@ -24,20 +24,42 @@ enum MoveType_t
 	MOVETYPE_MAX_BITS = 4
 };
 
+#define	LIFE_ALIVE				0 // alive
+#define	LIFE_DYING				1 // playing death animation or still falling off of a ledge waiting to hit ground
+#define	LIFE_DEAD				2 // dead. lying still.
+#define LIFE_RESPAWNABLE		3
+#define LIFE_DISCARDBODY		4
+
+#define MAX_WEAPONS 64
 
 // There is actually a long inheritance chain between C_BasePlayer and C_BaseEntity
 // but for what we need to do, this is enough (I also don't think we care about the custom materials...)
+
+class C_BaseCombatWeapon;
 
 class C_BasePlayer : public C_BaseEntity /*, public CCustomMaterialOwner*/
 {
 public:
 	
 	NETVAR(m_fFlags, int, "DT_BasePlayer", "m_fFlags");
+	NETVAR(m_lifeState, int, "DT_BasePlayer", "m_lifeState");
 
-	// TODO: Move these to a separate CSPlayer class? Or just keep everything here since this will always be a CSPlayer?
 	NETVAR(m_iMoveState, MoveType_t, "DT_CSPlayer", "m_iMoveState");
 	NETVAR(m_iHealth, int, "DT_CSPlayer", "m_iHealth");
 	NETVAR(m_aimPunchAngle, Vector, "DT_CSPlayer", "m_aimPunchAngle");
 	NETVAR(m_flFlashDuration, float, "DT_CSPlayer", "m_flFlashDuration");
 	NETVAR(m_iShotsFired, int, "DT_CSPlayer", "m_iShotsFired");
+
+	NETVAR(m_hActiveWeapon, CBaseHandle, "DT_BaseCombatCharacter", "m_hActiveWeapon");
+	NETVAR_ARRAY(m_hMyWeapons, CBaseHandle, "DT_BaseCombatCharacter", "m_hMyWeapons");
+
+	bool IsAlive()
+	{
+		return m_lifeState() == LIFE_ALIVE;
+	}
+
+	C_BaseCombatWeapon* GetActiveWeapon()
+	{
+		return reinterpret_cast<C_BaseCombatWeapon*>(g_EntityList->GetClientEntityFromHandle(m_hActiveWeapon()));
+	}
 };

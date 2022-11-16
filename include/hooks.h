@@ -18,4 +18,10 @@ namespace Hooks
 	/// Disable all hooks
 	/// </summary>
 	void CleanupHooks();
+
+	extern void* clientDllGadget;
+	extern void* engineDllGadget;
+
+	extern std::shared_ptr<VMTHook> clientModeHooks;
+	extern std::shared_ptr<VMTHook> modelRenderHooks;
 }

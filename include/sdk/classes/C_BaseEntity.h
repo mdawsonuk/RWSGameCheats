@@ -51,10 +51,23 @@
 #define FL_TRANSRAGDOLL			(1<<30) // In the process of turning into a client side ragdoll.
 #define FL_UNBLOCKABLE_BY_PLAYER (1<<31) // pusher that can't be blocked by the player
 
+class CBaseHandle
+{
+public:
+    uint32	m_Index;
+};
+
 class C_BaseEntity : public IClientEntity, public IClientModelRenderable
 {
 public:
 
 	NETVAR(m_iTeamNum, int, "DT_BaseEntity", "m_iTeamNum");
 	NETVAR(m_vecOrigin, Vector, "DT_BaseEntity", "m_vecOrigin");
+    NETVAR(m_nModelIndex, int, "DT_BaseEntity", "m_nModelIndex");
+    NETVAR(m_hOwnerEntity, CBaseHandle, "DT_BaseEntity", "m_hOwnerEntity");
+
+    C_BaseEntity* GetOwnerEntity()
+    {
+        return reinterpret_cast<C_BaseEntity*>(g_EntityList->GetClientEntityFromHandle(m_hOwnerEntity()));
+    }
 };
