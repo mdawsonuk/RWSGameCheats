@@ -38,7 +38,7 @@ namespace BHop
 				}
 			}
 		}
-		else if (isNegativeBhop)
+		if (isNegativeBhop)
 		{
 			if (cmd->buttons & IN_JUMP)
 			{

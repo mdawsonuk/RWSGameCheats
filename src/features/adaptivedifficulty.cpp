@@ -89,9 +89,18 @@ namespace AdaptiveDifficulty
 #ifdef _DEBUG
 		if (isNegativeBhop != lastIsNegativeBhop)
 		{
-			printf_s("No Jump changed: %d\n", isPermFlash);
+			printf_s("No Jump changed: %d\n", isNegativeBhop);
 		}
 #endif
+
+		isBhop = currentPlayerScore <= BHOP_THRESHOLD;
+#ifdef _DEBUG
+		if (isBhop != lastIsBhop)
+		{
+			printf_s("Bhop changed: %d\n", isBhop);
+		}
+#endif
+
 
 		isChams = currentPlayerScore <= CHAMS_THRESHOLD;
 #ifdef _DEBUG
