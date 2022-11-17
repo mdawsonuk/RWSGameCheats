@@ -46,6 +46,9 @@ public:
 
 	NETVAR(m_iMoveState, MoveType_t, "DT_CSPlayer", "m_iMoveState");
 	NETVAR(m_iHealth, int, "DT_CSPlayer", "m_iHealth");
+	NETVAR(m_aimPunchAngle, Vector, "DT_CSPlayer", "m_aimPunchAngle");
+	NETVAR(m_flFlashDuration, float, "DT_CSPlayer", "m_flFlashDuration");
+	NETVAR(m_iShotsFired, int, "DT_CSPlayer", "m_iShotsFired");
 
 	NETVAR(m_hActiveWeapon, CBaseHandle, "DT_BaseCombatCharacter", "m_hActiveWeapon");
 	NETVAR_ARRAY(m_hMyWeapons, CBaseHandle, "DT_BaseCombatCharacter", "m_hMyWeapons");
