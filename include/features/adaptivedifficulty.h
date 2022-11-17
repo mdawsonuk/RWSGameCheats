@@ -10,7 +10,7 @@
 
 #define CHAMS_THRESHOLD 0
 
-#define GLOW_THRESHOLD -1.0f
+#define GLOW_THRESHOLD -1
 
 #define NO_FLASH_THRESHOLD -2
 

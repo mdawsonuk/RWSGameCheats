@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "C_PlayerResource.h"
-#include "..\netvars.h"
+#include "sdk/netvars.h"
 
 class C_CS_PlayerResource : public C_PlayerResource
 {
