@@ -18,29 +18,6 @@
 
 #define AIMBOT_THRESHOLD -5
 
-enum EDifficultyModifiers
-{
-	NONE,
-	YES_FLASH,
-	INVISIBLE_ENEMIES,
-	CHAMS,
-	NO_FLASH,
-	BHOP,
-	NO_JUMP,
-	AIMBOT,
-};
-
-extern EDifficultyModifiers difficultyModifiers;
-
-extern bool isBhop;
-extern bool isNegativeBhop;
-extern bool isChams;
-extern bool isGlow;
-extern bool isNoFlash;
-extern bool isPermFlash;
-extern bool isAimbotAndNoRecoil;
-extern bool isAdaptive;
-
 namespace AdaptiveDifficulty
 {
 	void AdaptDifficulty();

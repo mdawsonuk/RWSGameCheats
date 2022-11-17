@@ -1,4 +1,5 @@
 #include "features/adaptivedifficulty.h"
+#include "features/settings.h"
 
 #include "sdk/interfaces.h"
 #include "sdk/netvars.h"

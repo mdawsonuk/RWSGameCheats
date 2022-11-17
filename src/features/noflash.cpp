@@ -2,7 +2,7 @@
 
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"
-#include "features/adaptivedifficulty.h"
+#include "features/settings.h"
 
 namespace NoFlash
 {

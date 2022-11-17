@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "features/gui.h"
-#include "features/adaptivedifficulty.h"
+#include "features/settings.h"
 
 #define SWITCH_BHOP_BUTTON 1
 #define SWITCH_CHAMS_BUTTON 2

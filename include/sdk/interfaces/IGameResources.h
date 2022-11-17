@@ -9,8 +9,6 @@ class Color;
 class IGameResources
 {
 public:
-	virtual	~IGameResources() {};
-
 	// Team data access 
 	virtual const char* GetTeamName(int index) = 0;
 	virtual int				GetTeamScore(int index) = 0;
@@ -31,5 +29,3 @@ public:
 	virtual int		GetTeam(int index) = 0;
 	virtual int		GetHealth(int index) = 0;
 };
-
-extern IGameResources* GameResources(void); // singelton accessor

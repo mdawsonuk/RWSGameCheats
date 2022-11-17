@@ -156,6 +156,9 @@
     <ClInclude Include="include\features\norecoil.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
+    <ClInclude Include="include\features\settings.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -204,6 +207,9 @@
       <Filter>Source Files\features</Filter>
     </ClCompile>
     <ClCompile Include="src\features\gui.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\settings.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>

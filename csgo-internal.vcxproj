@@ -153,6 +153,7 @@
     <ClInclude Include="include\features\norecoil.h" />
     <ClInclude Include="include\features\chams.h" />
     <ClInclude Include="include\features\gui.h" />
+    <ClInclude Include="include\features\settings.h" />
     <ClInclude Include="include\features\skinchanger.h" />
     <ClInclude Include="include\features\glow.h" />
     <ClInclude Include="include\features\adaptivedifficulty.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="src\features\chams.cpp" />
     <ClCompile Include="src\features\adaptivedifficulty.cpp" />
     <ClCompile Include="src\features\gui.cpp" />
+    <ClCompile Include="src\features\settings.cpp" />
     <ClCompile Include="src\features\skinchanger.cpp" />
     <ClCompile Include="src\features\norecoil.cpp" />
     <ClCompile Include="src\features\noflash.cpp" />

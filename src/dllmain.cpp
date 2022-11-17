@@ -9,16 +9,6 @@
 
 #include "features/skinchanger.h"
 
-// All hacks are turned off by default
-bool isBhop = false;
-bool isChams = false;
-bool isGlow = false;
-bool isAimbotAndNoRecoil = false;
-bool isNoFlash = false;
-bool isAdaptive = true;
-bool isNegativeBhop = false;
-bool isPermFlash = false;
-
 bool attached = false;
 FILE* conout = nullptr;
 FILE* conin = nullptr;

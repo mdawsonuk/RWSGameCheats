@@ -4,7 +4,7 @@
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/CUserCmd.h"
 
-#include "features/adaptivedifficulty.h"
+#include "features/settings.h"
 
 #include<cmath>
 #include <iostream>
