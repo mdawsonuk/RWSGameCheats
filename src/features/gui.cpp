@@ -2,8 +2,8 @@
 #include <windows.h>
 #include <string>
 #include <vector>
-#include "gui/gui.h"
-#include "gui/guiControl.h"
+#include "features/gui.h"
+#include "features/adaptivedifficulty.h"
 
 using namespace std;
 
@@ -100,7 +100,7 @@ namespace Gui
                 SwitchCheats(isGlow, cheats[2], messages[2]);
                 break;
             case SWITCH_NOFLAH_BUTTON:
-                SwitchCheats(isNoFlah, cheats[3], messages[3]);
+                SwitchCheats(isNoFlash, cheats[3], messages[3]);
                 break;
             case SWITCH_AIMBOT_AND_NORECOIL:
                 SwitchCheats(isAimbotAndNoRecoil, cheats[4], messages[4]);

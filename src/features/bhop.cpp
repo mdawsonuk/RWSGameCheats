@@ -3,7 +3,7 @@
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/CUserCmd.h"
-#include "gui/guiControl.h"
+#include "features/adaptivedifficulty.h"
 
 namespace BHop
 {

@@ -117,17 +117,8 @@
     <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h">
       <Filter>Header Files\sdk\classes</Filter>
     </ClInclude>
-    <ClInclude Include="include\gui\guiControl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gui\gui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\features\skinchanger.h">
       <Filter>Header Files\features</Filter>
-    </ClInclude>
-    <ClInclude Include="include\sdk\classes\C_PredictedViewModel.h">
-      <Filter>Header Files\sdk\classes</Filter>
     </ClInclude>
     <ClInclude Include="include\sdk\classes\CGlowObjectManager.h">
       <Filter>Header Files\sdk\classes</Filter>
@@ -149,6 +140,12 @@
     </ClInclude>
     <ClInclude Include="include\sdk\classes\C_CS_PlayerResource.h">
       <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sdk\classes\C_PredictedViewModel.h">
+      <Filter>Header Files\sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\features\gui.h">
+      <Filter>Header Files\features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,9 +176,6 @@
     <ClCompile Include="src\utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\gui\gui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\features\skinchanger.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
@@ -189,6 +183,9 @@
       <Filter>Source Files\features</Filter>
     </ClCompile>
     <ClCompile Include="src\features\adaptivedifficulty.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\gui.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>
