@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -122,7 +122,7 @@
     </ClInclude>
     <ClInclude Include="include\gui\gui.h">
       <Filter>Header Files</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="include\features\skinchanger.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
@@ -141,7 +141,7 @@
     <ClInclude Include="include\sdk\interfaces\IGameResources.h">
       <Filter>Header Files\sdk\interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="include\features\difficulty.h">
+    <ClInclude Include="include\features\adaptivedifficulty.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
     <ClInclude Include="include\sdk\interfaces\IVEngineClient.h">
@@ -181,14 +181,14 @@
     </ClCompile>
     <ClCompile Include="src\gui\gui.cpp">
       <Filter>Source Files</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="src\features\skinchanger.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
     <ClCompile Include="src\features\glow.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
-    <ClCompile Include="src\features\difficulty.cpp">
+    <ClCompile Include="src\features\adaptivedifficulty.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <typeinfo>
 
+EDifficultyModifiers difficultyModifiers = NONE;
+
 namespace AdaptiveDifficulty
 {
 	int lastLocalPlayerIndex = -1;
