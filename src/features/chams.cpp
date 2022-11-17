@@ -4,6 +4,7 @@
 #include "sdk/interfaces/IMaterial.h"
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/C_PredictedViewModel.h"
+#include "gui/guiControl.h"
 
 namespace Chams
 {
@@ -12,11 +13,8 @@ namespace Chams
 
 	void GetMaterials()
 	{
-		// TODO: Should all interface function calls be spoofed?
 		matFlat = g_MaterialSystem->FindMaterial("debug/debugdrawflat", nullptr);
 		matReg = g_MaterialSystem->FindMaterial("debug/debugambientcube", nullptr);
-
-
 	}
 
 	void OverrideMaterial(bool ignorez, float color[3])
@@ -64,6 +62,9 @@ namespace Chams
 
 	void OnDrawModelExecute(IVModelRender* _this, IMatRenderContext* pRenderContext, const DrawModelState_t& state, const ModelRenderInfo_t& pInfo, matrix3x4_t* pCustomBoneToWorld)
 	{
+		if (!isChams) {
+			return;
+		}
 		// Get the materials that we will be using if we haven't already
 		static bool materialsFound = false;
 		if (!materialsFound)

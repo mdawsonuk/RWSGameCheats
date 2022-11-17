@@ -3,13 +3,16 @@
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/CUserCmd.h"
+#include "gui/guiControl.h"
 
 namespace BHop
 {
 
 	void OnCreateMove(CUserCmd* cmd)
 	{
-		// TODO: Have a GUI for enabling/disabling cheats
+		if (!isBhop) {
+			return;
+		}
 
 		auto localPlayer = *g_LocalPlayer;
 

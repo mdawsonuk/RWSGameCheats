@@ -117,6 +117,12 @@
     <ClInclude Include="include\sdk\classes\C_BaseCombatWeapon.h">
       <Filter>Header Files\sdk\classes</Filter>
     </ClInclude>
+    <ClInclude Include="include\gui\guiControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\gui.h">
+      <Filter>Header Files</Filter>
+	</ClInclude>
     <ClInclude Include="include\features\skinchanger.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
@@ -149,9 +155,6 @@
     <ClCompile Include="src\vmthook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\hooks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -167,6 +170,12 @@
     <ClCompile Include="src\features\chams.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\gui.cpp">
+      <Filter>Source Files</Filter>
+	</ClCompile>
     <ClCompile Include="src\features\skinchanger.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>

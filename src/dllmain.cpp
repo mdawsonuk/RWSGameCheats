@@ -4,13 +4,24 @@
 #include "sdk/interfaces.h"
 #include "sdk/netvars.h"
 #include "hooks.h"
+#include "gui/guiControl.h"
+#include "gui/gui.h"
 
 #include "features/skinchanger.h"
+
+// All hacks are turned off by default
+bool isBhop = false;
+bool isChams = false;
+bool isGlow = false;
+bool isAimbotAndNoRecoil = false;
+bool isNoFlah = false;
+bool isAdaptive = false;
 
 bool attached = false;
 FILE* conout = nullptr;
 FILE* conin = nullptr;
 FILE* conerr = nullptr;
+HANDLE guiThread = nullptr;
 
 /// <summary>
 /// Called when the cheat module is being unloaded
@@ -22,9 +33,6 @@ void ProcessDetach()
     // Disable all hooks
     Hooks::CleanupHooks();
     Netvars::UnhookAllRecvProxies();
-
-    // TODO: Any other necessary clean up
-
 
 #ifdef _DEBUG
     fclose(conout);
@@ -88,7 +96,10 @@ bool ProcessAttach()
     return true;
 }
 
-
+int WINAPI CheatGUIThread(HINSTANCE hInst, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
+    Gui::guiWindow(hInst, hPrevInstance, pCmdLine, nCmdShow);
+    return 0;
+}
 
 // DllEntry
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
@@ -103,7 +114,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
         {
             return FALSE;
         }
-
+        guiThread = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)CheatGUIThread, hinstDLL, 0, nullptr);
         // We aren't starting a thread here since everything is based on hooks
         return ProcessAttach();
         
@@ -118,7 +129,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
         {
             break;
         }
-
+        TerminateThread(guiThread, 0);
+        CloseHandle(guiThread);
         ProcessDetach();
         break;
 

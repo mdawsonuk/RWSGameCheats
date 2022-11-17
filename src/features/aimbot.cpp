@@ -4,6 +4,8 @@
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/CUserCmd.h"
 
+#include "gui/guiControl.h"
+
 #include<cmath>
 #include <iostream>
 
@@ -81,6 +83,10 @@ namespace AimBot
 
 	void OnCreateMove(CUserCmd* cmd)
 	{
+		if (!isAimbotAndNoRecoil) {
+			return;
+		}
+
 		// when we shoot
 		if (cmd->buttons & IN_ATTACK)
 		{
