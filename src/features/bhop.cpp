@@ -21,7 +21,7 @@ namespace BHop
 			break;
 		}
 
-		if (isBhop) {
+		if (Settings::isBhop) {
 			if (cmd->buttons & IN_JUMP)
 			{
 				if (localPlayer->m_fFlags() & FL_ONGROUND)
@@ -38,7 +38,7 @@ namespace BHop
 				}
 			}
 		}
-		if (isNegativeBhop)
+		if (Settings::isNegativeBhop)
 		{
 			if (cmd->buttons & IN_JUMP)
 			{

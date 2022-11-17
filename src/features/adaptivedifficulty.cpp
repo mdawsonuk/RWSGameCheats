@@ -20,10 +20,10 @@ namespace AdaptiveDifficulty
 
 	void AdaptDifficulty()
 	{
-		if (!isAdaptive) {
+		if (!Settings::isAdaptive) {
 			// Ensure we don't retain negative "cheats"
-			isNegativeBhop = false;
-			isPermFlash = false;
+			Settings::isNegativeBhop = false;
+			Settings::isPermFlash = false;
 			return;
 		}
 
@@ -69,69 +69,67 @@ namespace AdaptiveDifficulty
 
 		float currentPlayerScore = playerKills + playerAssists * 0.5f - playerDeaths * 2.5f;
 
-		bool lastIsBhop = isBhop;
-		bool lastIsNegativeBhop = isNegativeBhop;
-		bool lastIsChams = isChams;
-		bool lastIsGlow = isGlow;
-		bool lastIsNoFlash = isNoFlash;
-		bool lastIsPermFlash = isPermFlash;
-		bool lastIsAimbotAndNoRecoil = isAimbotAndNoRecoil;
+		bool lastIsBhop = Settings::isBhop;
+		bool lastIsNegativeBhop = Settings::isNegativeBhop;
+		bool lastIsChams = Settings::isChams;
+		bool lastIsGlow = Settings::isGlow;
+		bool lastIsNoFlash = Settings::isNoFlash;
+		bool lastIsPermFlash = Settings::isPermFlash;
+		bool lastIsAimbotAndNoRecoil = Settings::isAimbotAndNoRecoil;
 		
-		isPermFlash = currentPlayerScore >= YES_FLASH_THRESHOLD;
+		Settings::isPermFlash = currentPlayerScore >= YES_FLASH_THRESHOLD;
 #ifdef _DEBUG
-		if (isPermFlash != lastIsPermFlash)
+		if (Settings::isPermFlash != lastIsPermFlash)
 		{
-			printf_s("Perm Flash changed: %d\n", isPermFlash);
+			printf_s("Perm Flash changed: %d\n", Settings::isPermFlash);
 		}
 #endif
 
-		isNegativeBhop = currentPlayerScore >= NO_JUMP_THRESHOLD;
-		
+		Settings::isNegativeBhop = currentPlayerScore >= NO_JUMP_THRESHOLD;
 #ifdef _DEBUG
-		if (isNegativeBhop != lastIsNegativeBhop)
+		if (Settings::isNegativeBhop != lastIsNegativeBhop)
 		{
-			printf_s("No Jump changed: %d\n", isNegativeBhop);
+			printf_s("No Jump changed: %d\n", Settings::isNegativeBhop);
 		}
 #endif
 
-		isBhop = currentPlayerScore <= BHOP_THRESHOLD;
+		Settings::isBhop = currentPlayerScore <= BHOP_THRESHOLD;
 #ifdef _DEBUG
-		if (isBhop != lastIsBhop)
+		if (Settings::isBhop != lastIsBhop)
 		{
-			printf_s("Bhop changed: %d\n", isBhop);
+			printf_s("Bhop changed: %d\n", Settings::isBhop);
 		}
 #endif
 
-
-		isChams = currentPlayerScore <= CHAMS_THRESHOLD;
+		Settings::isChams = currentPlayerScore <= CHAMS_THRESHOLD;
 #ifdef _DEBUG
-		if (isChams != lastIsChams)
+		if (Settings::isChams != lastIsChams)
 		{
-			printf_s("Chams changed: %d\n", isChams);
+			printf_s("Chams changed: %d\n", Settings::isChams);
 		}
 #endif
 
-		isNoFlash = currentPlayerScore <= NO_FLASH_THRESHOLD;
+		Settings::isNoFlash = currentPlayerScore <= NO_FLASH_THRESHOLD;
 #ifdef _DEBUG
-		if (isNoFlash != lastIsNoFlash)
+		if (Settings::isNoFlash != lastIsNoFlash)
 		{
-			printf_s("No flash changed: %d\n", isNoFlash);
+			printf_s("No flash changed: %d\n", Settings::isNoFlash);
 		}
 #endif
 
-		isGlow = currentPlayerScore <= GLOW_THRESHOLD;
+		Settings::isGlow = currentPlayerScore <= GLOW_THRESHOLD;
 #ifdef _DEBUG
-		if (isGlow != lastIsGlow)
+		if (Settings::isGlow != lastIsGlow)
 		{
-			printf_s("Glow changed: %d\n", isNoFlash);
+			printf_s("Glow changed: %d\n", Settings::isNoFlash);
 		}
 #endif
 
-		isAimbotAndNoRecoil = currentPlayerScore <= AIMBOT_THRESHOLD;
+		Settings::isAimbotAndNoRecoil = currentPlayerScore <= AIMBOT_THRESHOLD;
 #ifdef _DEBUG
-		if (isAimbotAndNoRecoil != lastIsAimbotAndNoRecoil)
+		if (Settings::isAimbotAndNoRecoil != lastIsAimbotAndNoRecoil)
 		{
-			printf_s("Aimbot/No recoil changed: %d\n", isNoFlash);
+			printf_s("Aimbot/No recoil changed: %d\n", Settings::isNoFlash);
 		}
 #endif
 	}

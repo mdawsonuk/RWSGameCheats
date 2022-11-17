@@ -30,7 +30,7 @@ namespace Gui
             if (wcsstr(temp, L"off") != 0) {
                 SendMessage(hWnd, WM_COMMAND, (i + 1), 0);
             }
-            EnableWindow(buttons[i], !isAdaptive);
+            EnableWindow(buttons[i], !Settings::isAdaptive);
         }
     }
 
@@ -89,28 +89,28 @@ namespace Gui
             switch (wp)
             {
             case SWITCH_BHOP_BUTTON:
-                SwitchCheats(isBhop, cheats[0], messages[0]);
+                SwitchCheats(Settings::isBhop, cheats[0], messages[0]);
                 break;
             case SWITCH_CHAMS_BUTTON:
-                SwitchCheats(isChams, cheats[1], messages[1]);
+                SwitchCheats(Settings::isChams, cheats[1], messages[1]);
                 break;
             case SWITCH_GLOW_BUTTON:
-                SwitchCheats(isGlow, cheats[2], messages[2]);
+                SwitchCheats(Settings::isGlow, cheats[2], messages[2]);
                 break;
             case SWITCH_NOFLAH_BUTTON:
-                SwitchCheats(isNoFlash, cheats[3], messages[3]);
+                SwitchCheats(Settings::isNoFlash, cheats[3], messages[3]);
                 break;
             case SWITCH_AIMBOT_AND_NORECOIL:
-                SwitchCheats(isAimbotAndNoRecoil, cheats[4], messages[4]);
+                SwitchCheats(Settings::isAimbotAndNoRecoil, cheats[4], messages[4]);
                 break;
             case SWTICH_ADAPTIVE_CHEAT_CONTROL:
             {
-                if (!isAdaptive) {
-                    isAdaptive = true;
+                if (!Settings::isAdaptive) {
+                    Settings::isAdaptive = true;
                     SetWindowTextW(adaptiveCheatControl, L"Adaptive cheat control is turned on");
                 }
                 else {
-                    isAdaptive = false;
+                    Settings::isAdaptive = false;
                     SetWindowTextW(adaptiveCheatControl, L"Adaptive cheat control is turned off");
                 }
                 SwitchBasedOnAdaptive(hWnd);

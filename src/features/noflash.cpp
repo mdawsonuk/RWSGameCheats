@@ -15,14 +15,14 @@ namespace NoFlash
 			return;
 		}
 
-		if (isNoFlash)
+		if (Settings::isNoFlash)
 		{
 			if (localPlayer->m_flFlashDuration() > 0.0f)
 			{
 				localPlayer->m_flFlashDuration() = 0.0f;
 			}
 		}
-		else if (isPermFlash)
+		else if (Settings::isPermFlash)
 		{
 			if (localPlayer->m_flFlashDuration() != 1.0f)
 			{

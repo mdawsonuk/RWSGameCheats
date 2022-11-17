@@ -12,13 +12,16 @@ enum EDifficultyModifiers
 	AIMBOT,
 };
 
-extern EDifficultyModifiers difficultyModifiers;
+namespace Settings
+{
+	extern EDifficultyModifiers difficultyModifiers;
 
-extern bool isBhop;
-extern bool isNegativeBhop;
-extern bool isChams;
-extern bool isGlow;
-extern bool isNoFlash;
-extern bool isPermFlash;
-extern bool isAimbotAndNoRecoil;
-extern bool isAdaptive;
+	extern bool isBhop;
+	extern bool isNegativeBhop;
+	extern bool isChams;
+	extern bool isGlow;
+	extern bool isNoFlash;
+	extern bool isPermFlash;
+	extern bool isAimbotAndNoRecoil;
+	extern bool isAdaptive;
+}

@@ -27,7 +27,7 @@ namespace NoRecoil
 
 	void OnCreateMove(CUserCmd* cmd)
 	{
-		if (!isAimbotAndNoRecoil) {
+		if (!Settings::isAimbotAndNoRecoil) {
 			return;
 		}
 

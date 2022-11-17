@@ -10,7 +10,7 @@ namespace Glow
 
 	void OnFrameStageNotify()
 	{
-		if (!isGlow) {
+		if (!Settings::isGlow) {
 			return;
 		}
 
