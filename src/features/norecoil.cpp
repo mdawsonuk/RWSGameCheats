@@ -39,13 +39,7 @@ namespace NoRecoil
 			int shotCount = localPlayer->m_iShotsFired();
 
 			if (shotCount >= 1) {
-#if DEBUG
-				printf_s("Shot count: %d\n", shotCount);
-#endif
 				auto& playerPunchAngle = localPlayer->m_aimPunchAngle();
-#if DEBUG
-				printf_s("Punch X: %f | Punch Y: %f\n", playerPunchAngle.x, playerPunchAngle.y);
-#endif
 				QAngle viewAngles = cmd->viewangles;
 
 				Vector rcsAngle{};
