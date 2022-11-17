@@ -7,15 +7,14 @@
 #include<cmath>
 #include <iostream>
 
-
-
 #define HEAD_BONE_ID 8
 #define DEGREES_IN_RADIAN 57.295779513082f
 
 namespace AimBot
 {
 
-	void clamp(QAngle& angle) {
+	void clamp(QAngle& angle)
+	{
 		if (angle.x > 89.0)
 			angle.x = 89.0;
 
@@ -52,8 +51,8 @@ namespace AimBot
 		return Vector(mHitboxMatrix.m_flMatVal[0][3], mHitboxMatrix.m_flMatVal[1][3], mHitboxMatrix.m_flMatVal[2][3]);
 	}
 
-	QAngle AimTo(Vector target) {
-
+	QAngle AimTo(Vector target)
+	{
 		Vector playerHead = GetBonePosition(*g_LocalPlayer, HEAD_BONE_ID);
 
 		Vector posDiff = Vector(
@@ -87,11 +86,7 @@ namespace AimBot
 		{
 			auto localPlayer = *g_LocalPlayer;
 
-			auto& playerPos = localPlayer->m_vecOrigin();
-
-			auto& playerTeamNum = localPlayer->m_iTeamNum();
-
-			float closestDiff = 999999999.f;
+			double closestDiff = 999999999.f;
 
 			QAngle nearestEntityAim;
 			bool botFound = FALSE;
@@ -109,12 +104,12 @@ namespace AimBot
 
 				// if it's on the same team as player don't bother
 				int teamNum = entity->m_iTeamNum();
-				if (playerTeamNum == teamNum || teamNum == 0) {
+				if (localPlayer->m_iTeamNum() == teamNum || teamNum == 0) {
 					continue;
 				}
 
 				// if it's dead then don't bother
-				if (!((C_BasePlayer*) entity)->IsAlive()) {
+				if (((C_BasePlayer*) entity)->IsAlive() == false) {
 					continue;
 				}
 
@@ -124,7 +119,7 @@ namespace AimBot
 				QAngle newViewAngles = AimTo(entityHead);
 
 
-				float diff = sqrt(
+				double diff = sqrt(
 					pow(newViewAngles.x - viewAngles.x, 2) +
 					pow(newViewAngles.y - viewAngles.y, 2)
 				);
@@ -142,7 +137,6 @@ namespace AimBot
 
 			// set player view angle to aim to nearest found
 			cmd->viewangles = nearestEntityAim;
-
 		}
 	}
 }
