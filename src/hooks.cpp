@@ -31,7 +31,6 @@ namespace Hooks
 
 		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
-		NoFlash::CheckForFlash();
 		AimBot::OnCreateMove(cmd);
 		NoRecoil::OnCreateMove(cmd);
 
@@ -71,6 +70,7 @@ namespace Hooks
 		case FRAME_RENDER_START:
 
 			Glow::OnFrameStageNotify();
+			NoFlash::CheckForFlash();
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 

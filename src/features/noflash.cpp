@@ -12,6 +12,10 @@ namespace NoFlash
 
 		auto localPlayer = *g_LocalPlayer;
 
+		if (!localPlayer) {
+			return;
+		}
+
 		if (localPlayer->m_flFlashDuration() > 0.f)
 		{
 			localPlayer->m_flFlashDuration() = 0.f;
