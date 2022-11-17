@@ -102,6 +102,12 @@ namespace AimBot
 
 				C_BaseEntity* entity = (C_BaseEntity*) g_EntityList->GetClientEntity(i);
 
+				// Only aim at players
+				if (entity->GetClientClass()->m_ClassId != CCSPlayer)
+				{
+					continue;
+				}
+
 				// if it's on the same team as player don't bother
 				int teamNum = entity->m_iTeamNum();
 				if (localPlayer->m_iTeamNum() == teamNum || teamNum == 0) {

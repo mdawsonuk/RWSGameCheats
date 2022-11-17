@@ -149,7 +149,7 @@ namespace Netvars
 		// TODO: Uncomment this if you want to dump all tables
 		//			they will be in your csgo directory in the netvar_dump.txt 
 		//
-#if DEBUG
+#ifdef _DEBUG
 		//DumpTables();
 #endif
 
