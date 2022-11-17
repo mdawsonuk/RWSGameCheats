@@ -4,7 +4,7 @@
 #include "sdk/interfaces/IMaterial.h"
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/C_PredictedViewModel.h"
-#include "../../include/gui/guiControl.h"
+#include "gui/guiControl.h"
 
 namespace Chams
 {

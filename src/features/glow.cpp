@@ -3,7 +3,7 @@
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/CUserCmd.h"
-#include "../../include/gui/guiControl.h"
+#include "gui/guiControl.h"
 
 namespace Glow
 {

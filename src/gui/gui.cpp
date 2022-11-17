@@ -2,10 +2,8 @@
 #include <windows.h>
 #include <string>
 #include <vector>
-#include "../../include/gui/gui.h"
-#include "../../include/gui/guiControl.h"
-
-using namespace std;
+#include "gui/gui.h"
+#include "gui/guiControl.h"
 
 #define SWITCH_BHOP_BUTTON 1
 #define SWITCH_CHAMS_BUTTON 2
@@ -16,8 +14,8 @@ using namespace std;
 
 namespace Gui 
 {
-    vector<HWND> buttons, messages;
-    vector<LPCWSTR> cheats{ L"bhop", L"chams", L"glow" , L"noFlash", L"aimbot and noRecoil" };
+    std::vector<HWND> buttons, messages;
+    std::vector<LPCWSTR> cheats{ L"bhop", L"chams", L"glow" , L"noFlash", L"aimbot and noRecoil" };
 
     HWND title, instructions, adaptiveCheatControl, adaptiveButton;
     HFONT defaultFont, titleFont;
@@ -49,8 +47,8 @@ namespace Gui
     }
 
     void SwitchCheats(bool &cheatFlag, LPCWSTR cheat, HWND hWndMsg) {
-        wstring tempOn = wstring(cheat) + cheatOn;
-        wstring tempOff = wstring(cheat) + cheatOff;
+        std::wstring tempOn = std::wstring(cheat) + cheatOn;
+        std::wstring tempOff = std::wstring(cheat) + cheatOff;
 
         if (!cheatFlag) {
             cheatFlag = true;
@@ -73,7 +71,7 @@ namespace Gui
         int y = 200;
 
         for (size_t i = 0; i < cheats.size(); i++) {
-            wstring temp = wstring(cheats[i]) + cheatOff;
+            std::wstring temp = std::wstring(cheats[i]) + cheatOff;
             messages.push_back(CreateWindowW(L"Edit", temp.c_str(), WS_VISIBLE | WS_CHILD, 230, y, 265, 40, hWnd, NULL, NULL, NULL));
             buttons.push_back(CreateWindowW(L"Button", L"Switch", WS_VISIBLE | WS_CHILD | WS_BORDER, 80, y, 100, 40, hWnd, (HMENU)(i + 1), NULL, NULL));
 
