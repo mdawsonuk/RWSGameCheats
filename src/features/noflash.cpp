@@ -2,13 +2,16 @@
 
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"
+#include "gui/guiControl.h"
 
 namespace NoFlash
 {
 
 	void CheckForFlash()
 	{
-		// TODO: Have a GUI for enabling/disabling cheats
+		if (!isNoFlah) {
+			return;
+		}
 
 		auto localPlayer = *g_LocalPlayer;
 

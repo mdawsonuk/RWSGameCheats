@@ -29,7 +29,7 @@ namespace Hooks
 
 		auto res = Utils::SpoofStdCall<bool>(ogCreateMove, clientDllGadget, flInputSampleTime, cmd);
 
-		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
+		// Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
 		AimBot::OnCreateMove(cmd);
 		NoRecoil::OnCreateMove(cmd);

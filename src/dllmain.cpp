@@ -33,9 +33,6 @@ void ProcessDetach()
     Hooks::CleanupHooks();
     Netvars::UnhookAllRecvProxies();
 
-    // TODO: Any other necessary clean up
-
-
 #ifdef _DEBUG
     fclose(conout);
     fclose(conin);

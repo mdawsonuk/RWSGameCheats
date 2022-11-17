@@ -13,11 +13,8 @@ namespace Chams
 
 	void GetMaterials()
 	{
-		// TODO: Should all interface function calls be spoofed?
 		matFlat = g_MaterialSystem->FindMaterial("debug/debugdrawflat", nullptr);
 		matReg = g_MaterialSystem->FindMaterial("debug/debugambientcube", nullptr);
-
-
 	}
 
 	void OverrideMaterial(bool ignorez, float color[3])
