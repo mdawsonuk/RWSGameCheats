@@ -147,7 +147,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\features\aimbot.h" />
     <ClInclude Include="include\features\bhop.h" />
+    <ClInclude Include="include\features\noflash.h" />
+    <ClInclude Include="include\features\norecoil.h" />
     <ClInclude Include="include\features\chams.h" />
     <ClInclude Include="include\features\gui.h" />
     <ClInclude Include="include\features\skinchanger.h" />
@@ -189,12 +192,15 @@
   <ItemGroup>
     <ClCompile Include="include\sdk\interfaces\IClientRenderable.h" />
     <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\features\aimbot.cpp" />
     <ClCompile Include="src\features\bhop.cpp" />
     <ClCompile Include="src\features\glow.cpp" />
     <ClCompile Include="src\features\chams.cpp" />
     <ClCompile Include="src\features\adaptivedifficulty.cpp" />
     <ClCompile Include="src\features\gui.cpp" />
     <ClCompile Include="src\features\skinchanger.cpp" />
+    <ClCompile Include="src\features\norecoil.cpp" />
+    <ClCompile Include="src\features\noflash.cpp" />
     <ClCompile Include="src\hooks.cpp" />
     <ClCompile Include="src\sdk\interfaces.cpp" />
     <ClCompile Include="src\sdk\netvars.cpp" />

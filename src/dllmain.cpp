@@ -21,6 +21,7 @@ bool attached = false;
 FILE* conout = nullptr;
 FILE* conin = nullptr;
 FILE* conerr = nullptr;
+HANDLE guiThread = nullptr;
 
 /// <summary>
 /// Called when the cheat module is being unloaded
@@ -32,9 +33,6 @@ void ProcessDetach()
     // Disable all hooks
     Hooks::CleanupHooks();
     Netvars::UnhookAllRecvProxies();
-
-    // TODO: Any other necessary clean up
-
 
 #ifdef _DEBUG
     fclose(conout);
@@ -97,7 +95,7 @@ bool ProcessAttach()
     return true;
 }
 
-int WINAPI myThread(HINSTANCE hInst, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
+int WINAPI CheatGUIThread(HINSTANCE hInst, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
     Gui::guiWindow(hInst, hPrevInstance, pCmdLine, nCmdShow);
     return 0;
 }
@@ -115,7 +113,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
         {
             return FALSE;
         }
-        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)myThread, hinstDLL, 0, nullptr));
+        guiThread = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)CheatGUIThread, hinstDLL, 0, nullptr);
         // We aren't starting a thread here since everything is based on hooks
         return ProcessAttach();
         
@@ -130,7 +128,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
         {
             break;
         }
-
+        TerminateThread(guiThread, 0);
+        CloseHandle(guiThread);
         ProcessDetach();
         break;
 

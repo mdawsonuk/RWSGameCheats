@@ -13,7 +13,6 @@ namespace BHop
 		if (!isBhop) {
 			return;
 		}
-		// TODO: Have a GUI for enabling/disabling cheats
 
 		auto localPlayer = *g_LocalPlayer;
 

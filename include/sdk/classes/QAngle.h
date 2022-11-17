@@ -29,11 +29,6 @@ public:
 
 	// Initialization
 	void Init(vec_t ix = 0.0f, vec_t iy = 0.0f, vec_t iz = 0.0f);
-
-
-	// TODO: Math operations
-	//		can either copy them from source sdk or implement manually
-
 };
 
 
