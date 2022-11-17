@@ -65,7 +65,7 @@ namespace Gui
 
         instructions = CreateWindowW(L"Static", L"Use the below switches to turn the cheats on and off", WS_VISIBLE | WS_CHILD, 100, 80, 350, 70, hWnd, NULL, NULL, NULL);
 
-        adaptiveCheatControl = CreateWindowW(L"EDIT", L"adaptive cheat control is turned off", WS_VISIBLE | WS_CHILD, 230, 130, 250, 40, hWnd, NULL, NULL, NULL);
+        adaptiveCheatControl = CreateWindowW(L"EDIT", L"Adaptive cheat control is turned on", WS_VISIBLE | WS_CHILD, 230, 130, 250, 40, hWnd, NULL, NULL, NULL);
         adaptiveButton = CreateWindowW(L"Button", L"Switch", WS_VISIBLE | WS_CHILD | WS_BORDER, 80, 130, 100, 40, hWnd, (HMENU)SWTICH_ADAPTIVE_CHEAT_CONTROL, NULL, NULL);
 
         int y = 200;
@@ -161,6 +161,7 @@ namespace Gui
 
         MSG msg = { 0 };
 
+        SwitchBasedOnAdaptive(hWnd);
         while (GetMessage(&msg, NULL, 0, 0)) {
             DispatchMessage(&msg);
         }
