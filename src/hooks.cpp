@@ -4,6 +4,7 @@
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
 
+#include "features/adaptivedifficulty.h"
 #include "features/aimbot.h"
 #include "features/norecoil.h"
 #include "features/bhop.h"
@@ -71,6 +72,7 @@ namespace Hooks
 
 			Glow::OnFrameStageNotify();
 			NoFlash::CheckForFlash();
+			AdaptiveDifficulty::AdaptDifficulty();
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 
@@ -133,8 +135,4 @@ namespace Hooks
 			modelRenderHooks->DisableHooks();
 		}
 	}
-
-
 }
-
-

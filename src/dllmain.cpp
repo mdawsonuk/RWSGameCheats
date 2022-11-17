@@ -4,18 +4,10 @@
 #include "sdk/interfaces.h"
 #include "sdk/netvars.h"
 #include "hooks.h"
-#include "gui/guiControl.h"
-#include "gui/gui.h"
+#include "features/adaptivedifficulty.h"
+#include "features/gui.h"
 
 #include "features/skinchanger.h"
-
-// All hacks are turned off by default
-bool isBhop = false;
-bool isChams = false;
-bool isGlow = false;
-bool isAimbotAndNoRecoil = false;
-bool isNoFlah = false;
-bool isAdaptive = false;
 
 bool attached = false;
 FILE* conout = nullptr;
@@ -75,7 +67,6 @@ bool ProcessAttach()
         ProcessDetach();
         return false;
     }
-
 
     // Hooks must be set up last
     success = Hooks::SetupHooks();

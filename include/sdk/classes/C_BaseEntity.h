@@ -65,9 +65,4 @@ public:
 	NETVAR(m_vecOrigin, Vector, "DT_BaseEntity", "m_vecOrigin");
     NETVAR(m_nModelIndex, int, "DT_BaseEntity", "m_nModelIndex");
     NETVAR(m_hOwnerEntity, CBaseHandle, "DT_BaseEntity", "m_hOwnerEntity");
-
-    C_BaseEntity* GetOwnerEntity()
-    {
-        return reinterpret_cast<C_BaseEntity*>(g_EntityList->GetClientEntityFromHandle(m_hOwnerEntity()));
-    }
 };

@@ -2,26 +2,32 @@
 
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"
-#include "gui/guiControl.h"
+#include "features/settings.h"
 
 namespace NoFlash
 {
 
 	void CheckForFlash()
 	{
-		if (!isNoFlah) {
-			return;
-		}
-
 		auto localPlayer = *g_LocalPlayer;
 
 		if (!localPlayer) {
 			return;
 		}
 
-		if (localPlayer->m_flFlashDuration() > 0.f)
+		if (Settings::isNoFlash)
 		{
-			localPlayer->m_flFlashDuration() = 0.f;
+			if (localPlayer->m_flFlashDuration() > 0.0f)
+			{
+				localPlayer->m_flFlashDuration() = 0.0f;
+			}
+		}
+		else if (Settings::isPermFlash)
+		{
+			if (localPlayer->m_flFlashDuration() != 1.0f)
+			{
+				localPlayer->m_flFlashDuration() = 1.0f;
+			}
 		}
 	}
 }

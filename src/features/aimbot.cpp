@@ -4,7 +4,7 @@
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/CUserCmd.h"
 
-#include "gui/guiControl.h"
+#include "features/settings.h"
 
 #include<cmath>
 #include <iostream>
@@ -83,7 +83,7 @@ namespace AimBot
 
 	void OnCreateMove(CUserCmd* cmd)
 	{
-		if (!isAimbotAndNoRecoil) {
+		if (!Settings::isAimbotAndNoRecoil) {
 			return;
 		}
 

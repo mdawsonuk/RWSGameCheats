@@ -3,14 +3,14 @@
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/CUserCmd.h"
-#include "gui/guiControl.h"
+#include "features/settings.h"
 
 namespace Glow
 {
 
 	void OnFrameStageNotify()
 	{
-		if (!isGlow) {
+		if (!Settings::isGlow) {
 			return;
 		}
 
