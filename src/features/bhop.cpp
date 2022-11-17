@@ -7,13 +7,8 @@
 
 namespace BHop
 {
-
 	void OnCreateMove(CUserCmd* cmd)
 	{
-		if (!isBhop) {
-			return;
-		}
-
 		auto localPlayer = *g_LocalPlayer;
 
 		// Don't want to jump when going up a ladder or in noclip
@@ -26,21 +21,30 @@ namespace BHop
 			break;
 		}
 
-		if (cmd->buttons & IN_JUMP)
-		{
-			if (localPlayer->m_fFlags() & FL_ONGROUND)
+		if (isBhop) {
+			if (cmd->buttons & IN_JUMP)
 			{
-				// We're on the ground so let's jump!
-				cmd->buttons |= IN_JUMP;
-			}
-			else
-			{
-				// We're in the air, clear the jump button
-				cmd->buttons &= ~IN_JUMP;
+				if (localPlayer->m_fFlags() & FL_ONGROUND)
+				{
+					// We're on the ground so let's jump!
+					cmd->buttons |= IN_JUMP;
+				}
+				else
+				{
+					// We're in the air, clear the jump button
+					cmd->buttons &= ~IN_JUMP;
 
-				// TODO: We could also do auto strafing here
+					// TODO: We could also do auto strafing here
+				}
 			}
 		}
-
+		else if (isNegativeBhop)
+		{
+			if (cmd->buttons & IN_JUMP)
+			{
+				// No jumping allowed!
+				cmd->buttons &= ~IN_JUMP;
+			}
+		}
 	}
 }

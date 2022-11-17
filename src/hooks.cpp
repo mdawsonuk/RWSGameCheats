@@ -35,9 +35,6 @@ namespace Hooks
 		AimBot::OnCreateMove(cmd);
 		NoRecoil::OnCreateMove(cmd);
 
-		// Use this to check for changes in K/D
-		AdaptiveDifficulty::AdaptDifficulty();
-
 		return res;
 	}
 	
@@ -75,6 +72,7 @@ namespace Hooks
 
 			Glow::OnFrameStageNotify();
 			NoFlash::CheckForFlash();
+			AdaptiveDifficulty::AdaptDifficulty();
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 

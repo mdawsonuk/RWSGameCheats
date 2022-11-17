@@ -2,15 +2,19 @@
 
 // All of our thresholds for which cheats/disabilities to enable
 
-#define YES_FLASH_THRESHOLD 10
+#define YES_FLASH_THRESHOLD 7
 
-#define INVISIBLE_ENEMIES_THRESHOLD 5
+#define NO_JUMP_THRESHOLD 5
+
+#define INVISIBLE_ENEMIES_THRESHOLD 3
 
 #define CHAMS_THRESHOLD 0
 
-#define NO_FLASH_THRESHOLD -5
+#define GLOW_THRESHOLD -1.0f
 
-#define AIMBOT_THRESHOLD = -10
+#define NO_FLASH_THRESHOLD -2
+
+#define AIMBOT_THRESHOLD -5
 
 enum EDifficultyModifiers
 {

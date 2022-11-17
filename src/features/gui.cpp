@@ -5,8 +5,6 @@
 #include "features/gui.h"
 #include "features/adaptivedifficulty.h"
 
-using namespace std;
-
 #define SWITCH_BHOP_BUTTON 1
 #define SWITCH_CHAMS_BUTTON 2
 #define SWITCH_GLOW_BUTTON 3
@@ -14,10 +12,10 @@ using namespace std;
 #define SWITCH_AIMBOT_AND_NORECOIL 5
 #define SWTICH_ADAPTIVE_CHEAT_CONTROL 6
 
-namespace Gui 
+namespace Gui
 {
-    vector<HWND> buttons, messages;
-    vector<LPCWSTR> cheats{ L"bhop", L"chams", L"glow" , L"noFlash", L"aimbot and noRecoil" };
+    std::vector<HWND> buttons, messages;
+    std::vector<LPCWSTR> cheats{ L"bhop", L"chams", L"glow" , L"noFlash", L"aimbot and noRecoil" };
 
     HWND title, instructions, adaptiveCheatControl, adaptiveButton;
     HFONT defaultFont, titleFont;
@@ -48,9 +46,9 @@ namespace Gui
         }
     }
 
-    void SwitchCheats(bool &cheatFlag, LPCWSTR cheat, HWND hWndMsg) {
-        wstring tempOn = wstring(cheat) + cheatOn;
-        wstring tempOff = wstring(cheat) + cheatOff;
+    void SwitchCheats(bool& cheatFlag, LPCWSTR cheat, HWND hWndMsg) {
+        std::wstring tempOn = std::wstring(cheat) + cheatOn;
+        std::wstring tempOff = std::wstring(cheat) + cheatOff;
 
         if (!cheatFlag) {
             cheatFlag = true;
@@ -64,16 +62,16 @@ namespace Gui
 
     void AddSwitchControls(HWND hWnd) {
         title = CreateWindowW(L"Static", L"HackAndGO", WS_VISIBLE | WS_CHILD, 20, 20, 350, 70, hWnd, NULL, NULL, NULL);
-        
+
         instructions = CreateWindowW(L"Static", L"Use the below switches to turn the cheats on and off", WS_VISIBLE | WS_CHILD, 100, 80, 350, 70, hWnd, NULL, NULL, NULL);
-        
+
         adaptiveCheatControl = CreateWindowW(L"EDIT", L"adaptive cheat control is turned off", WS_VISIBLE | WS_CHILD, 230, 130, 250, 40, hWnd, NULL, NULL, NULL);
         adaptiveButton = CreateWindowW(L"Button", L"Switch", WS_VISIBLE | WS_CHILD | WS_BORDER, 80, 130, 100, 40, hWnd, (HMENU)SWTICH_ADAPTIVE_CHEAT_CONTROL, NULL, NULL);
 
         int y = 200;
 
         for (size_t i = 0; i < cheats.size(); i++) {
-            wstring temp = wstring(cheats[i]) + cheatOff;
+            std::wstring temp = std::wstring(cheats[i]) + cheatOff;
             messages.push_back(CreateWindowW(L"Edit", temp.c_str(), WS_VISIBLE | WS_CHILD, 230, y, 265, 40, hWnd, NULL, NULL, NULL));
             buttons.push_back(CreateWindowW(L"Button", L"Switch", WS_VISIBLE | WS_CHILD | WS_BORDER, 80, y, 100, 40, hWnd, (HMENU)(i + 1), NULL, NULL));
 
@@ -106,26 +104,26 @@ namespace Gui
                 SwitchCheats(isAimbotAndNoRecoil, cheats[4], messages[4]);
                 break;
             case SWTICH_ADAPTIVE_CHEAT_CONTROL:
-                {
-                    if (!isAdaptive) {
-                        isAdaptive = true;
-                        SetWindowTextW(adaptiveCheatControl, L"adaptive cheat control is turned on");
-                    }
-                    else {
-                        isAdaptive = false;
-                        SetWindowTextW(adaptiveCheatControl, L"adaptive cheat control is turned off");
-                    }
-                    SwitchBasedOnAdaptive(hWnd);
+            {
+                if (!isAdaptive) {
+                    isAdaptive = true;
+                    SetWindowTextW(adaptiveCheatControl, L"Adaptive cheat control is turned on");
                 }
-                break;
+                else {
+                    isAdaptive = false;
+                    SetWindowTextW(adaptiveCheatControl, L"Adaptive cheat control is turned off");
+                }
+                SwitchBasedOnAdaptive(hWnd);
+            }
+            break;
             }
             break;
         case WM_CREATE:
-            {
-                AddSwitchControls(hWnd);
-                CreateAndSetFonts();
-            }
-            break;
+        {
+            AddSwitchControls(hWnd);
+            CreateAndSetFonts();
+        }
+        break;
         case WM_DESTROY:
             DeleteObject(defaultFont);
             DeleteObject(titleFont);
@@ -146,7 +144,9 @@ namespace Gui
         window.lpfnWndProc = WindowProcedure;
         window.hIcon = LoadIconA(NULL, IDI_ERROR);
         if (!RegisterClassW(&window)) {
-            printf_s("FAIL!\n");
+#ifdef _DEBUG
+            printf_s("[GUI] Failed to register window!\n");
+#endif
             return -1;
         }
 
@@ -155,7 +155,9 @@ namespace Gui
         ShowWindow(hWnd, nCmdShow);
         UpdateWindow(hWnd);
 
-        printf_s("GUI Window Created!\n");
+#ifdef _DEBUG
+        printf_s("[GUI] Cheat control window created\n");
+#endif
 
         MSG msg = { 0 };
 
@@ -163,7 +165,9 @@ namespace Gui
             DispatchMessage(&msg);
         }
 
-        printf_s("GUI Window terminated!\n");
+#ifdef _DEBUG
+        printf_s("[GUI] Cheat control window created\n");
+#endif
 
         return (int)msg.wParam;
     }
