@@ -1,12 +1,14 @@
 #include "hooks.h"
 
 #include "sdk/interfaces.h"
-#include "features/bhop.h"
-#include "features/glow.h"
-
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
 
+#include "features/aimbot.h"
+#include "features/norecoil.h"
+#include "features/bhop.h"
+#include "features/glow.h"
+#include "features/noflash.h"
 #include "features/bhop.h"
 #include "features/chams.h"
 #include "features/skinchanger.h"
@@ -29,6 +31,8 @@ namespace Hooks
 
 		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
+		AimBot::OnCreateMove(cmd);
+		NoRecoil::OnCreateMove(cmd);
 
 		return res;
 	}
@@ -66,6 +70,7 @@ namespace Hooks
 		case FRAME_RENDER_START:
 
 			Glow::OnFrameStageNotify();
+			NoFlash::CheckForFlash();
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 

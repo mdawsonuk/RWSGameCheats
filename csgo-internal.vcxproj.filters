@@ -135,6 +135,15 @@
     <ClInclude Include="include\features\glow.h">
       <Filter>Header Files\features</Filter>
     </ClInclude>
+    <ClInclude Include="include\features\aimbot.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+    <ClInclude Include="include\features\noflash.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
+    <ClInclude Include="include\features\norecoil.h">
+      <Filter>Header Files\features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -171,6 +180,15 @@
       <Filter>Source Files\features</Filter>
     </ClCompile>
     <ClCompile Include="src\features\glow.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\norecoil.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\aimbot.cpp">
+      <Filter>Source Files\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\noflash.cpp">
       <Filter>Source Files\features</Filter>
     </ClCompile>
   </ItemGroup>
