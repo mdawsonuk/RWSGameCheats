@@ -37,6 +37,10 @@ namespace AdaptiveDifficulty
 
 		auto csPlayerResource = *g_CSPlayerResource;
 
+		if (!csPlayerResource) {
+			return;
+		}
+
 		int playerKills = csPlayerResource->m_iKills()[localPlayerIndex];
 		int playerAssists = csPlayerResource->m_iAssists()[localPlayerIndex];
 		int playerDeaths = csPlayerResource->m_iDeaths()[localPlayerIndex];
