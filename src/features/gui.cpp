@@ -12,6 +12,8 @@
 #define SWITCH_AIMBOT_AND_NORECOIL 5
 #define SWTICH_ADAPTIVE_CHEAT_CONTROL 6
 
+#define ID_TIMER 1
+
 namespace Gui
 {
     std::vector<HWND> buttons, messages;
@@ -23,13 +25,20 @@ namespace Gui
     LPCWSTR cheatOn = L" cheat is turned on";
     LPCWSTR cheatOff = L" cheat is turned off";
 
+    void UpdateWindow(bool cheatFlag, LPCWSTR cheat, HWND hWndMsg) {
+        std::wstring tempOn = std::wstring(cheat) + cheatOn;
+        std::wstring tempOff = std::wstring(cheat) + cheatOff;
+
+        if (cheatFlag) {
+            SetWindowTextW(hWndMsg, tempOn.c_str());
+        }
+        else {
+            SetWindowTextW(hWndMsg, tempOff.c_str());
+        }
+    }
+
     void SwitchBasedOnAdaptive(HWND hWnd) {
         for (size_t i = 0; i < buttons.size() - 1; i++) {
-            wchar_t temp[150];
-            GetWindowTextW(messages[i], temp, 150);
-            if (wcsstr(temp, L"off") != 0) {
-                SendMessage(hWnd, WM_COMMAND, (i + 1), 0);
-            }
             EnableWindow(buttons[i], !Settings::isAdaptive);
         }
     }
@@ -118,16 +127,27 @@ namespace Gui
             break;
             }
             break;
+        case WM_TIMER:
+        {
+            UpdateWindow(Settings::isBhop, cheats[0], messages[0]);
+            UpdateWindow(Settings::isChams, cheats[1], messages[1]);
+            UpdateWindow(Settings::isGlow, cheats[2], messages[2]);
+            UpdateWindow(Settings::isNoFlash, cheats[3], messages[3]);
+            UpdateWindow(Settings::isAimbotAndNoRecoil, cheats[4], messages[4]);
+        }
+        break;
         case WM_CREATE:
         {
             AddSwitchControls(hWnd);
             CreateAndSetFonts();
+            SetTimer(hWnd, ID_TIMER, 5000, NULL);
         }
         break;
         case WM_DESTROY:
             DeleteObject(defaultFont);
             DeleteObject(titleFont);
             PostQuitMessage(0);
+            KillTimer(hWnd, 1);
             break;
         }
 
@@ -164,6 +184,7 @@ namespace Gui
         SwitchBasedOnAdaptive(hWnd);
         while (GetMessage(&msg, NULL, 0, 0)) {
             DispatchMessage(&msg);
+            UpdateWindow(hWnd);
         }
 
 #ifdef _DEBUG
