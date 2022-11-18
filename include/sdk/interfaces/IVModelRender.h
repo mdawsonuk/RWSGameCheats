@@ -17,7 +17,6 @@ class Vector;
 class IMaterial;
 class CStudioHdr;
 class matrix3x4_t;
-class matrix3x4a_t;
 
 struct MaterialLightingState_t;
 struct studiohdr_t;

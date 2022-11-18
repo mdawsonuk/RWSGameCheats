@@ -3,12 +3,17 @@
 #include "sdk/interfaces.h"
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/CUserCmd.h"
+#include "features/settings.h"
 
 namespace Glow
 {
 
 	void OnFrameStageNotify()
 	{
+		if (!Settings::isGlow) {
+			return;
+		}
+
 		for (int i = 0; i < g_GlowManager->m_GlowObjectDefinitions.m_Size; i++) {
 			GlowObjectDefinition_t& glowObject = g_GlowManager->m_GlowObjectDefinitions[i];
 

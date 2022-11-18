@@ -1,6 +1,7 @@
 #pragma once
 
 #include "C_BaseEntity.h"
+#include "C_BaseCombatWeapon.h"
 #include "sdk\netvars.h"
 
 enum MoveType_t
@@ -35,8 +36,6 @@ enum MoveType_t
 // There is actually a long inheritance chain between C_BasePlayer and C_BaseEntity
 // but for what we need to do, this is enough (I also don't think we care about the custom materials...)
 
-class C_BaseCombatWeapon;
-
 class C_BasePlayer : public C_BaseEntity /*, public CCustomMaterialOwner*/
 {
 public:
@@ -46,6 +45,9 @@ public:
 
 	NETVAR(m_iMoveState, MoveType_t, "DT_CSPlayer", "m_iMoveState");
 	NETVAR(m_iHealth, int, "DT_CSPlayer", "m_iHealth");
+	NETVAR(m_aimPunchAngle, Vector, "DT_CSPlayer", "m_aimPunchAngle");
+	NETVAR(m_flFlashDuration, float, "DT_CSPlayer", "m_flFlashDuration");
+	NETVAR(m_iShotsFired, int, "DT_CSPlayer", "m_iShotsFired");
 
 	NETVAR(m_hActiveWeapon, CBaseHandle, "DT_BaseCombatCharacter", "m_hActiveWeapon");
 	NETVAR_ARRAY(m_hMyWeapons, CBaseHandle, "DT_BaseCombatCharacter", "m_hMyWeapons");

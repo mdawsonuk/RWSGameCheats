@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../common.h"
+#include "sdk/common.h"
 
 typedef unsigned short ClientShadowHandle_t;
 typedef unsigned short ClientRenderHandle_t;
@@ -10,7 +10,6 @@ class IClientUnknown;
 class Vector;
 class QAngle;
 class matrix3x4_t;
-class matrix3x4a_t;
 
 // This provides a way for entities to know when they've entered or left the PVS.
 // Normally, server entities can use NotifyShouldTransmit to get this info, but client-only

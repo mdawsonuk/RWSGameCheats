@@ -2,8 +2,6 @@
 
 #include "sdk/interfaces/IBaseClientDLL.h"
 
-class CUserCmd;
-
 namespace Glow
 {
 

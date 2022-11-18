@@ -1,15 +1,19 @@
 #include "hooks.h"
 
 #include "sdk/interfaces.h"
-#include "features/bhop.h"
-#include "features/glow.h"
-
 #include "sdk/classes/C_BasePlayer.h"
 #include "sdk/classes/Vector.h"
 
+#include "features/adaptivedifficulty.h"
+#include "features/aimbot.h"
+#include "features/norecoil.h"
+#include "features/bhop.h"
+#include "features/glow.h"
+#include "features/noflash.h"
 #include "features/bhop.h"
 #include "features/chams.h"
 #include "features/skinchanger.h"
+#include "features/permflash.h"
 
 namespace Hooks
 {
@@ -27,8 +31,10 @@ namespace Hooks
 
 		auto res = Utils::SpoofStdCall<bool>(ogCreateMove, clientDllGadget, flInputSampleTime, cmd);
 
-		// TODO: Do anything in CreateMove here (aimbot, bhop, etc)
+		// Do anything in CreateMove here (aimbot, bhop, etc)
 		BHop::OnCreateMove(cmd);
+		AimBot::OnCreateMove(cmd);
+		NoRecoil::OnCreateMove(cmd);
 
 		return res;
 	}
@@ -60,12 +66,15 @@ namespace Hooks
 		case FRAME_NET_UPDATE_POSTDATAUPDATE_START:
 
 			SkinChanger::OnFramePostDataUpdateStart();
+			PermFlash::OnFramePostDataUpdateStart();
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 
 		case FRAME_RENDER_START:
 
 			Glow::OnFrameStageNotify();
+			NoFlash::CheckForFlash();
+			AdaptiveDifficulty::AdaptDifficulty();
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 
@@ -109,6 +118,8 @@ namespace Hooks
 		SkinChanger::ogRecvProxy_nModelIndex = Netvars::HookRecvProxy("DT_BaseViewModel", "m_nModelIndex", SkinChanger::RecvProxy_nModelIndex);
 		SkinChanger::ogRecvProxy_nSequence = Netvars::HookRecvProxy("DT_BaseViewModel", "m_nSequence", SkinChanger::RecvProxy_nSequence);
 
+		PermFlash::ogRecvProxy_FlashTime = Netvars::HookRecvProxy("DT_CSPlayer", "m_flFlashDuration", PermFlash::RecvProxy_FlashTime);
+
 		return true;
 	}
 
@@ -128,8 +139,4 @@ namespace Hooks
 			modelRenderHooks->DisableHooks();
 		}
 	}
-
-
 }
-
-
