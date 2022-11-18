@@ -35,7 +35,7 @@ The following cheats/reverse cheats are present in our project
 
 ## Usage
 
-To use the cheat, you need to use [`Extreme Injector v3.exe`](blob/main/Extreme%20Injector%20v3.exe) to inject the cheat. The `csgo.exe` process needs to be selected, and the DLL `csgo-internal.dll` needs to be added to the inject list. The cheat can be downloaded from the [releases page](/releases)
+To use the cheat, you need to use an injector - we have provided [`Extreme Injector v3.exe`](blob/main/Extreme%20Injector%20v3.exe) to inject the cheat. The `csgo.exe` process needs to be selected, and the DLL `csgo-internal.dll` needs to be added to the inject list. The cheat can be downloaded from the [releases page](/releases)
 
 Upon the cheat being injected, two windows will pop up - the debug console and the cheat controlling window.
 
