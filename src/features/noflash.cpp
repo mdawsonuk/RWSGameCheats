@@ -22,12 +22,5 @@ namespace NoFlash
 				localPlayer->m_flFlashDuration() = 0.0f;
 			}
 		}
-		else if (Settings::isPermFlash)
-		{
-			if (localPlayer->m_flFlashDuration() != 1.0f)
-			{
-				localPlayer->m_flFlashDuration() = 1.0f;
-			}
-		}
 	}
 }

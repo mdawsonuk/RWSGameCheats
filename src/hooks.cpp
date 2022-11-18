@@ -13,6 +13,7 @@
 #include "features/bhop.h"
 #include "features/chams.h"
 #include "features/skinchanger.h"
+#include "features/permflash.h"
 
 namespace Hooks
 {
@@ -65,6 +66,7 @@ namespace Hooks
 		case FRAME_NET_UPDATE_POSTDATAUPDATE_START:
 
 			SkinChanger::OnFramePostDataUpdateStart();
+			PermFlash::OnFramePostDataUpdateStart();
 
 			return Utils::SpoofFastCall(ogFrameStageNotify, clientDllGadget, _this, edx, curStage);
 
@@ -115,6 +117,8 @@ namespace Hooks
 		// Netvar recv proxy hooks
 		SkinChanger::ogRecvProxy_nModelIndex = Netvars::HookRecvProxy("DT_BaseViewModel", "m_nModelIndex", SkinChanger::RecvProxy_nModelIndex);
 		SkinChanger::ogRecvProxy_nSequence = Netvars::HookRecvProxy("DT_BaseViewModel", "m_nSequence", SkinChanger::RecvProxy_nSequence);
+
+		PermFlash::ogRecvProxy_FlashTime = Netvars::HookRecvProxy("DT_CSPlayer", "m_flFlashDuration", PermFlash::RecvProxy_FlashTime);
 
 		return true;
 	}
